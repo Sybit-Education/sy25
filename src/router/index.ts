@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAgendaStore } from '@/stores/agenda.store'
+import { useRoomStore } from '@/stores/room.store'
+import { useTalkStore } from '@/stores/talk.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +21,12 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     }
   ]
+})
+
+router.beforeEach(() => {
+  useRoomStore().init()
+  useTalkStore().init()
+  useAgendaStore().init()
 })
 
 export default router
