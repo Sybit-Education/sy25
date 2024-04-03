@@ -13,6 +13,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/talk/:talkId',
+      name: 'talk',
+      component: HomeView
+    },    
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

@@ -8,6 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AgendaItem: typeof import('./src/components/AgendaItem.vue')['default']
+    BlockUI: typeof import('primevue/blockui')['default']
+    copy: typeof import('./src/components/RoomItem copy.vue')['default']
+    HeaderBar: typeof import('./src/components/HeaderBar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -15,11 +18,18 @@ declare module 'vue' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
+    ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']
+    ProgressOverly: typeof import('./src/components/ProgressOverly.vue')['default']
+    ProgressSpinner: typeof import('primevue/progressspinner')['default']
     RoomItem: typeof import('./src/components/RoomItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SycomLogo: typeof import('./src/components/icons/SycomLogo.vue')['default']
+    SykomLogo: typeof import('./src/components/icons/SykomLogo.vue')['default']
     TabMenu: typeof import('primevue/tabmenu')['default']
+    TalkItem: typeof import('./src/components/TalkItem.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    Timeline: typeof import('primevue/timeline')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
   }
 }

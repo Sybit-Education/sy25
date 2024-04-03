@@ -1,30 +1,31 @@
 <template>
-  <div v-if="room">
-    {{ room.name }}
-  </div>
+  <h3 v-if="talk">
+    <font-awesome-icon :icon="['fas', 'microphone']" />
+    {{ talk.title }}
+  </h3>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapState } from 'pinia'
-import { useRoomStore } from '../stores/room.store'
-import type { Room } from '@/interfaces/room'
+import { useTalkStore } from '../stores/talk.store'
+import type { Talk } from '@/interfaces/talk'
 
 export default defineComponent({
   name: 'RoomItem',
   props: {
-    roomId: {
+    talkId: {
       type: String,
       required: false,
       default: null
     }
   },
   computed: {
-    ...mapState(useRoomStore, {
+    ...mapState(useTalkStore, {
       getById: (store) => store.getById
     }),
-    room(): Room | undefined {
-      if (this.roomId && this.getById(this.roomId)) {
-        return this.getById(this.roomId) as Room
+    talk(): Talk | undefined {
+      if (this.talkId && this.getById(this.talkId)) {
+        return this.getById(this.talkId) as Talk
       } else {
         return undefined
       }
