@@ -1,5 +1,5 @@
 export interface Room {
-    id: string
-    name: string
-  }
-  
+  id: string
+  name: string
+  color: string
+}

@@ -1,13 +1,23 @@
 <template>
-    <div class="progress-overly">
-        <BlockUI :blocked="blocked" fullScreen />
-        <ProgressSpinner v-if="showLoadingSpinner"  aria-label="Loading ..." />
-    </div>
+  <div v-if="enabled" class="card flex justify-center justify-middle" style="height: 1000vh">
+    <ProgressSpinner
+      style="width: 50px; height: 50px; color: var(--primary-color)"
+      strokeWidth="8"
+      class="fill-surface-0 dark:fill-surface-800"
+      aria-label="Loading ..."
+    />
+  </div>
 </template>
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-<style lang="scss">
-.progress-overlay {
-    width: 100vw;
-    height: 100vw;
-}
-</style>
+export default defineComponent({
+  name: 'ProgressOverlay',
+  props: {
+    enabled: {
+      type: Boolean,
+      required: true
+    }
+  }
+})
+</script>

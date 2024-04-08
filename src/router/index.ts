@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import { useAgendaStore } from '@/stores/agenda.store'
 import { useRoomStore } from '@/stores/room.store'
 import { useTalkStore } from '@/stores/talk.store'
+import { useSpeakerStore } from '@/stores/speaker.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +17,7 @@ const router = createRouter({
       path: '/talk/:talkId',
       name: 'talk',
       component: HomeView
-    },    
+    },
     {
       path: '/about',
       name: 'about',
@@ -30,6 +31,7 @@ const router = createRouter({
 
 router.beforeEach(() => {
   useRoomStore().init()
+  useSpeakerStore().init()
   useTalkStore().init()
   useAgendaStore().init()
 })

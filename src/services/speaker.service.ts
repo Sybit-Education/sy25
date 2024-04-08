@@ -1,12 +1,12 @@
-import type { Room } from '@/interfaces/room'
+import type { Speaker } from '@/interfaces/speaker'
 import base from './airtable.service'
 
-const BASE_NAME = 'Raum'
+const BASE_NAME = 'Referent'
 
-const roomService = {
+const speakerService = {
   getAll() {
     return new Promise((resolve, reject) => {
-      const items: Array<Room> = []
+      const items: Array<Speaker> = []
       base(BASE_NAME)
         .select()
         .eachPage(
@@ -15,7 +15,8 @@ const roomService = {
               items.push({
                 id: partialRecords.id,
                 name: partialRecords.fields.Name as string,
-                color: partialRecords.fields.Farbe as string
+                title: partialRecords.fields.Titel as string,
+                image: partialRecords.fields.Photo as object
               })
             })
             fetchNextPage()
@@ -32,4 +33,4 @@ const roomService = {
   }
 }
 
-export default roomService
+export default speakerService

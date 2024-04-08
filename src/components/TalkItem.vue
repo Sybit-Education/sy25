@@ -1,8 +1,8 @@
 <template>
-  <h3 v-if="talk">
+  <span v-if="talk">
     <font-awesome-icon :icon="['fas', 'microphone']" />
     {{ talk.title }}
-  </h3>
+  </span>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -11,12 +11,12 @@ import { useTalkStore } from '../stores/talk.store'
 import type { Talk } from '@/interfaces/talk'
 
 export default defineComponent({
-  name: 'RoomItem',
+  name: 'TalkItem',
   props: {
     talkId: {
       type: String,
       required: false,
-      default: null
+      default: undefined
     }
   },
   computed: {
