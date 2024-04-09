@@ -40,7 +40,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .agenda-item {
-  background-color: rgba($color: #18181b, $alpha: 0.8);
+  background-color: rgba($color: #27272c, $alpha: 0.8);
 }
 a {
   text-decoration: none;

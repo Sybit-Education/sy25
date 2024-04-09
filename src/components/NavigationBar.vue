@@ -35,12 +35,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .navigation-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
+  box-shadow: 0 -2px 5px rgba(#27272c, 0.8); /* Leichter Schatten für Tiefe */
   z-index: 1000; /* Stellt sicher, dass die Navigationsleiste über anderen Elementen liegt */
 }
 /* Optional: Stil für den TabMenu-Hintergrund, falls gewünscht */

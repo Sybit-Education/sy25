@@ -1,7 +1,8 @@
 <template>
   <span v-if="talk">
-    <font-awesome-icon :icon="['fas', 'microphone']" />
-    {{ talk.title }}
+    <font-awesome-icon v-if="!talk.isPause" :icon="['fas', 'microphone']" />
+    <font-awesome-icon v-else :icon="['fas', 'mug-saucer']" />
+    <span class="mx-2">{{ talk.title }}</span>
   </span>
 </template>
 <script lang="ts">
