@@ -1,5 +1,6 @@
 <template>
   <router-link :to="`/talk/${agenda.talk}`">
+    <a v-if="isActiveTalk" name="active" />
     <Card class="agenda-item m-1" :class="statusClass">
       <template #title>
         <TalkItem :talkId="agenda.talk[0]"></TalkItem>
@@ -51,7 +52,6 @@ export default defineComponent({
         currentDate.getTime() > this.agenda.date.getTime() &&
         currentDate.getTime() < this.agenda.date.getTime() + this.agenda.duration * 60 * 1000
       ) {
-        console.log('isActiveTalk', this.agenda)
         return true
       } else {
         return false

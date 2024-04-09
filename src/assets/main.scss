@@ -1,4 +1,7 @@
-/*@import './base.css';*/
+//@tailwind base;
+//@tailwind components;
+//@tailwind utilities;
+
 @import 'primeflex/primeflex.css';
 
 :root {
@@ -13614,5 +13617,24 @@
 h1,
 h2,
 h3 {
-  text-shadow: 0 0 15px var(--primary-color);
+  animation: neonAnim 3s alternate-reverse infinite;
+}
+
+@keyframes neonAnim {
+  from {
+    text-shadow:
+      0 0 14px rgba(181, 23, 131, 0.7),
+      0 0 44px rgba(181, 23, 131, 0.7),
+      0 0 104px rgba(181, 23, 131, 0.7);
+  }
+  to {
+    text-shadow:
+      0 0 9px rgba(181, 23, 131, 1),
+      0 0 24px rgba(181, 23, 131, 1),
+      0 0 64px rgba(181, 23, 131, 1);
+  }
+}
+
+.container {
+  max-width: 768px;
 }

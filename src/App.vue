@@ -8,7 +8,7 @@ import NavigationBar from './components/NavigationBar.vue'
   <header>
     <HeaderBar></HeaderBar>
   </header>
-  <main>
+  <main class="container md:mx-auto">
     <RouterView />
   </main>
   <footer>
