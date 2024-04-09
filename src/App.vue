@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import HeaderBar from './components/HeaderBar.vue'
 import NavigationBar from './components/NavigationBar.vue'
+import PwaPrompt from './components/PwaPrompt.vue'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import NavigationBar from './components/NavigationBar.vue'
   </main>
   <footer>
     <NavigationBar />
+    <PwaPrompt />
   </footer>
 </template>
 
