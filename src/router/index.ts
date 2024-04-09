@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import TalkView from '../views/TalkView.vue'
 import { useAgendaStore } from '@/stores/agenda.store'
 import { useRoomStore } from '@/stores/room.store'
 import { useTalkStore } from '@/stores/talk.store'
@@ -16,7 +17,8 @@ const router = createRouter({
     {
       path: '/talk/:talkId',
       name: 'talk',
-      component: HomeView
+      props: true,
+      component: TalkView
     },
     {
       path: '/about',
