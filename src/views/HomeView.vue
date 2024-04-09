@@ -2,7 +2,7 @@
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
     <div v-for="(dateGroup, date) in groupedList" :key="date">
-      <h2>
+      <h2 class="mx-3">
         {{
           new Intl.DateTimeFormat('de-DE', {
             dateStyle: 'short'
@@ -10,7 +10,7 @@
         }}
       </h2>
       <div v-for="(timeGroup, time) in dateGroup" :key="time">
-        <h3>{{ time }} Uhr</h3>
+        <h3 class="mx-3">{{ time }} Uhr</h3>
         <agenda-item
           v-for="agendaItem in timeGroup"
           :key="agendaItem.date.getTime()"

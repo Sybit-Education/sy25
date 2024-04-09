@@ -13617,21 +13617,36 @@
 h1,
 h2,
 h3 {
-  animation: neonAnim 3s alternate-reverse infinite;
+  animation: neonAnim 1s alternate-reverse infinite;
+  --animation: neonAnim 3s ease-in-out infinite alternate;
 }
 
 @keyframes neonAnim {
   from {
     text-shadow:
+      0 0 1px #fff,
+      0 0 2px #fff,
+      0 0 6px rgba(181, 23, 131, 1),
+      0 0 9px rgba(181, 23, 131, 1),
+      0 0 12px rgba(181, 23, 131, 1);
+    /*text-shadow:
       0 0 14px rgba(181, 23, 131, 0.7),
       0 0 44px rgba(181, 23, 131, 0.7),
       0 0 104px rgba(181, 23, 131, 0.7);
+      */
   }
   to {
     text-shadow:
+      0 0 1px #fff,
+      0 0 10px rgba(181, 23, 131, 1),
+      0 0 15px rgba(181, 23, 131, 1),
+      0 0 20px rgba(181, 23, 131, 1),
+      0 0 25px rgba(181, 23, 131, 1);
+    /*text-shadow:
       0 0 9px rgba(181, 23, 131, 1),
       0 0 24px rgba(181, 23, 131, 1),
       0 0 64px rgba(181, 23, 131, 1);
+      */
   }
 }
 
