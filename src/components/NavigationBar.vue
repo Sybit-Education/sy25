@@ -1,6 +1,15 @@
 <template>
   <div class="navigation-bar">
-    <TabMenu :model="items" />
+    <TabMenu :model="items">
+      <template #item="{ item, props }">
+        <router-link v-slot="{ href, navigate }" :to="item.route" custom>
+          <a :href="href" v-bind="props.action" @click="navigate">
+            <span v-bind="props.icon" />
+            <span v-bind="props.label">{{ item.label }}</span>
+          </a>
+        </router-link>
+      </template>
+    </TabMenu>
   </div>
 </template>
 
@@ -12,17 +21,12 @@ export default {
         {
           label: 'Home',
           icon: 'pi pi-home',
-          to: '/'
+          route: '/'
         },
         {
-          label: 'Sessions',
-          icon: 'pi pi-calendar',
-          to: '/sessions'
-        },
-        {
-          label: 'Speakers',
+          label: 'About',
           icon: 'pi pi-users',
-          to: '/speakers'
+          route: '/about'
         }
         // Füge hier weitere Menüpunkte hinzu
       ]

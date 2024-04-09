@@ -5,19 +5,14 @@ import type { Agenda } from '@/interfaces/agenda'
 
 interface State {
   agendaList: Agenda[]
-  groupedList: [
-    {
-      date: Date | undefined
-      agenda: Map<string, Agenda[]> | undefined
-    }
-  ]
+  groupedList: Record<string, Record<string, Agenda[]>> | undefined
 }
 
 export const useAgendaStore = defineStore('agenda', {
   state: (): State => {
     return {
       agendaList: [],
-      groupedList: [{ date: undefined, agenda: undefined }]
+      groupedList: undefined
     }
   },
   getters: {
@@ -32,24 +27,31 @@ export const useAgendaStore = defineStore('agenda', {
       agendaService.getAll().then((result) => {
         this.agendaList = result as Array<Agenda>
 
-        const groups = this.agendaList.reduce((groups, agenda: Agenda) => {
-          const date = agenda.date.toISOString() as string
-          if (!groups[date]) {
-            groups[date] = []
+        this.agendaList.sort((a, b) => {
+          const dateComparison = a.date.toDateString().localeCompare(b.date.toDateString())
+          if (dateComparison === 0) {
+            return a.date.getTime() - b.date.getTime()
           }
-          groups[date].push(agenda)
-          return groups
-        }, {}) as Map<string, Agenda[]>
-
-        // Edit: to add it in the array format instead
-        const groupArrays = Object.keys(groups).map((date) => {
-          return {
-            date: Date.parse(date),
-            agenda: groups[date]
-          }
+          return dateComparison
         })
-        this.groupedList = groupArrays
 
+        // Zweistufiges Gruppieren nach Datum und dann nach Uhrzeit
+        type GroupedAgenda = Record<string, Record<string, Agenda[]>>
+        const groupedAgenda: GroupedAgenda = {}
+        this.agendaList.forEach((agenda) => {
+          const dateKey = agenda.date.toDateString()
+          const timeKey = agenda.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          if (!groupedAgenda[dateKey]) {
+            groupedAgenda[dateKey] = {}
+          }
+          if (!groupedAgenda[dateKey][timeKey]) {
+            groupedAgenda[dateKey][timeKey] = []
+          }
+          groupedAgenda[dateKey][timeKey].push(agenda)
+        })
+
+        this.groupedList = groupedAgenda
+        
         loadingStore.updateLoading(false)
       })
     }

@@ -6,11 +6,15 @@
       </template>
       <template #subtitle><SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem></template>
       <template #content>
-        <span v-if="agenda.duration" class="p-text-secondary">
-          <font-awesome-icon :icon="['fas', 'clock']" />
-          {{ agenda.duration / 60 }} min.
-        </span>
-        <RoomItem :roomId="agenda.room[0]"></RoomItem>
+        <div class="flex flex-col xl:flex-row xl:items-start gap-4">
+          <div class="flex-3">
+            <RoomItem v-if="agenda.room" :roomId="agenda.room[0]"></RoomItem>
+          </div>
+          <div v-if="agenda.duration" class="p-text-secondary flex-1">
+            <font-awesome-icon :icon="['fas', 'clock']" />
+            {{ agenda.duration / 60 }} min.
+          </div>
+        </div>
       </template>
     </Card>
   </router-link>

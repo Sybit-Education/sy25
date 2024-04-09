@@ -1,6 +1,30 @@
 <template>
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
+    <div v-for="(dateGroup, date) in groupedList" :key="date">
+      <h2>{{ date }}</h2>
+      <div v-for="(timeGroup, time) in dateGroup" :key="time">
+        <h3>{{ time }} Uhr</h3>
+
+        <agenda-item
+          v-for="agendaItem in timeGroup"
+          :key="agendaItem.date.getTime()"
+          :agenda="agendaItem"
+        ></agenda-item>
+
+        <!-- Carousel
+          :value="timeGroup"
+          :numVisible="4"
+          :numScroll="1"
+          :responsiveOptions="galleryResponsiveOptions"
+        >
+          <template #item="slotProps">
+            <agenda-item :agenda="slotProps.data"></agenda-item>
+          </template>
+        </Carousel -->
+      </div>
+    </div>
+    <!--
     <Timeline :value="groupedList" class="w-full md:w-[20rem]">
       <template #opposite="slotProps">
         <p class="w-full md:w-[20rem]">
@@ -27,6 +51,7 @@
         <agenda-item v-else :agenda="slotProps.item.agenda[0]"></agenda-item>
       </template>
     </Timeline>
+    -->
   </div>
 </template>
 
@@ -76,7 +101,8 @@ export default defineComponent({
     }),
     ...mapState(useAgendaStore, {
       agendaList: (store) => store.agendaList as Array<Agenda>,
-      groupedList: (store) => store.groupedList
+      groupedList: (store) =>
+        store.groupedList as Record<string, Record<string, Agenda[]>> | undefined
     })
   }
 })

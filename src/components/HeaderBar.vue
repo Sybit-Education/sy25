@@ -1,6 +1,6 @@
 <template>
-  <nav class="header-bar">
-    <SykomLogo class="logo"></SykomLogo>
+  <nav class="header-bar text-center">
+    <img class="logo" src="/img/sykom24.png" alt="logo" />
   </nav>
 </template>
 <style lang="scss">
@@ -14,9 +14,10 @@
   left: 0px;
   background: #18181b;
   z-index: 1000;
-  
+  border-bottom: #909090 1px solid;
+
   .logo {
-    height: 1.75rem;
+    height: 2rem;
     width: auto;
     margin: 0.5rem;
   }
