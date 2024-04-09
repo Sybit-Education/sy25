@@ -2,56 +2,23 @@
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
     <div v-for="(dateGroup, date) in groupedList" :key="date">
-      <h2>{{ date }}</h2>
+      <h2>
+        {{
+          new Intl.DateTimeFormat('de-DE', {
+            dateStyle: 'short'
+          }).format(new Date(date))
+        }}
+      </h2>
       <div v-for="(timeGroup, time) in dateGroup" :key="time">
         <h3>{{ time }} Uhr</h3>
-
         <agenda-item
           v-for="agendaItem in timeGroup"
           :key="agendaItem.date.getTime()"
           :agenda="agendaItem"
         ></agenda-item>
-
-        <!-- Carousel
-          :value="timeGroup"
-          :numVisible="4"
-          :numScroll="1"
-          :responsiveOptions="galleryResponsiveOptions"
-        >
-          <template #item="slotProps">
-            <agenda-item :agenda="slotProps.data"></agenda-item>
-          </template>
-        </Carousel -->
       </div>
+      <hr class="my-5" />
     </div>
-    <!--
-    <Timeline :value="groupedList" class="w-full md:w-[20rem]">
-      <template #opposite="slotProps">
-        <p class="w-full md:w-[20rem]">
-          {{
-            new Intl.DateTimeFormat('de-DE', {
-              //dateStyle: 'short',
-              timeStyle: 'short'
-            }).format(slotProps.item.date)
-          }}
-        </p>
-      </template>
-      <template #content="slotProps">
-        <Carousel
-          v-if="slotProps.item.agenda.length > 1"
-          :value="slotProps.item.agenda"
-          :numVisible="4"
-          :numScroll="1"
-          :responsiveOptions="galleryResponsiveOptions"
-        >
-          <template #item="slotProps">
-            <agenda-item :agenda="slotProps.data"></agenda-item>
-          </template>
-        </Carousel>
-        <agenda-item v-else :agenda="slotProps.item.agenda[0]"></agenda-item>
-      </template>
-    </Timeline>
-    -->
   </div>
 </template>
 

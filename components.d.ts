@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AgendaItem: typeof import('./src/components/AgendaItem.vue')['default']
+    Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
     Carousel: typeof import('primevue/carousel')['default']
     Chip: typeof import('primevue/chip')['default']

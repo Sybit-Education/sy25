@@ -1,6 +1,6 @@
 <template>
   <span v-if="talk">
-    <font-awesome-icon v-if="!talk.isPause" :icon="['fas', 'microphone']" />
+    <font-awesome-icon v-if="!talk.isPause" :icon="['fas', 'microphone-lines']" />
     <font-awesome-icon v-else :icon="['fas', 'mug-saucer']" />
     <span class="mx-2">{{ talk.title }}</span>
   </span>

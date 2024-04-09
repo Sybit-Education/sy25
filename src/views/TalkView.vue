@@ -1,5 +1,11 @@
 <template>
   <div v-if="talk">
+    <router-link :to="`/`">
+      <Button class="mr-3" severity="secondary">
+        <font-awesome-icon :icon="['fas', 'chevron-left']" class="mr-1" />
+        Übersicht
+      </Button>
+    </router-link>
     <Card class="talk-item m-1">
       <template #title>
         <TalkItem :talkId="talkId"></TalkItem>
