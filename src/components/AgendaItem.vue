@@ -1,10 +1,10 @@
 <template>
   <router-link :to="`/talk/${agenda.talk}`">
-    <Card class="agenda-item m-1">
+    <Card class="agenda-item m-1" :class="statusClass">
       <template #title>
-        <span v-if="isActiveTalk" class="p-text-primary">Now</span>
-
         <TalkItem :talkId="agenda.talk[0]"></TalkItem>
+
+        <font-awesome-icon v-if="isActiveTalk" :icon="['fas', 'bolt']" class="live-bolt" />
       </template>
       <template #subtitle><SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem></template>
       <template #content>
@@ -64,6 +64,15 @@ export default defineComponent({
       } else {
         return false
       }
+    },
+    statusClass() {
+      if (this.isActiveTalk) {
+        return 'bg-primary'
+      } else if (this.isBeforeNow) {
+        return 'bg-secondary'
+      } else {
+        return ''
+      }
     }
   }
 })
@@ -75,5 +84,11 @@ export default defineComponent({
 }
 a {
   text-decoration: none;
+}
+
+.live-bolt {
+  color: #ffcc00;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
 }
 </style>
