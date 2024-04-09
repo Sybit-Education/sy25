@@ -59,7 +59,7 @@ export default defineComponent({
     },
     isBeforeNow() {
       const currentDate = new Date()
-      if (currentDate.getTime() < this.agenda.date.getTime()) {
+      if (this.agenda.date.getTime() + this.agenda.duration < currentDate.getTime()) {
         return true
       } else {
         return false
@@ -67,9 +67,9 @@ export default defineComponent({
     },
     statusClass() {
       if (this.isActiveTalk) {
-        return 'bg-primary'
+        return 'live'
       } else if (this.isBeforeNow) {
-        return 'bg-secondary'
+        return 'before-now'
       } else {
         return ''
       }
@@ -80,6 +80,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .agenda-item {
+  text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
   background-color: rgba($color: #27272c, $alpha: 0.8);
 }
 a {
@@ -87,8 +88,18 @@ a {
 }
 
 .live-bolt {
-  color: #ffcc00;
+  color: rgb(255, 204, 0);
   font-size: 1.5rem;
   margin-left: 0.5rem;
+}
+
+.agenda-item {
+  transition: background-color 0.3s;
+}
+.live {
+  background-color: rgba($color: #b51783, $alpha: 0.7);
+}
+.before-now {
+  background-color: rgba($color: #000000, $alpha: 0.7);
 }
 </style>

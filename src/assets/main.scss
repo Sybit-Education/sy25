@@ -13610,3 +13610,9 @@
     color: #a1a1aa;
   }
 }
+
+h1,
+h2,
+h3 {
+  text-shadow: 0 0 15px var(--primary-color);
+}
