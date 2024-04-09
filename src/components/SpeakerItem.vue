@@ -1,6 +1,6 @@
 <template>
   <span v-if="talk">
-    {{ speaker?.name }}
+    <span>{{ speaker?.name }}</span>  
     <span v-if="speaker?.title">, {{ speaker.title }}</span>
   </span>
 </template>

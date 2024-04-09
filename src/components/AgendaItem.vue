@@ -3,18 +3,19 @@
     <a v-if="isActiveTalk" name="active" />
     <Card class="agenda-item m-1" :class="statusClass">
       <template #title>
-        <TalkItem :talkId="agenda.talk[0]"></TalkItem>
-
-        <font-awesome-icon v-if="isActiveTalk" :icon="['fas', 'bolt']" class="live-bolt" />
+        <div class="flex flex-col">
+          <TalkItem :talkId="agenda.talk[0]" class="flex-1"></TalkItem>
+          <font-awesome-icon v-if="isActiveTalk" :icon="['fas', 'bolt']" class="live-bolt flex-0" />
+        </div>
       </template>
       <template #subtitle><SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem></template>
       <template #content>
         <div class="flex flex-col">
           <div class="flex-1 flex flex-col xl:flex-row xl:items-start gap-4">
-            <div class="flex-3">
+            <div class="flex-1">
               <RoomItem v-if="agenda.room" :roomId="agenda.room[0]"></RoomItem>
             </div>
-            <div v-if="agenda.duration" class="p-text-secondary flex-1">
+            <div v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
               <font-awesome-icon :icon="['fas', 'clock']" />
               {{ agenda.duration / 60 }} min.
             </div>
@@ -100,6 +101,9 @@ a {
   background-color: rgba($color: #b51783, $alpha: 0.7);
 }
 .before-now {
-  background-color: rgba($color: #000000, $alpha: 0.7);
+  background-color: rgba($color: #191919, $alpha: 0.7);
+  .p-card-body {
+    color: #666;
+  }
 }
 </style>

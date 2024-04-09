@@ -1,6 +1,6 @@
 <template>
   <nav class="header-bar text-center">
-    <img class="logo" src="/img/sykom24.png" alt="logo" />
+    <img class="logo m-1" src="/img/sykom24.png" alt="logo" />
   </nav>
 </template>
 <style lang="scss">
@@ -19,7 +19,6 @@
   .logo {
     height: 2rem;
     width: auto;
-    margin: 0.5rem;
   }
 }
 </style>
