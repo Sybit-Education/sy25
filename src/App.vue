@@ -18,7 +18,7 @@ import NavigationBar from './components/NavigationBar.vue'
 
 <style lang="scss">
 body {
-  background-image: url('/img/pexels-cátia-matos-1072179.jpg');
+  background-image: url('/img/pexels-cátia-matos-1072179-darker.jpg');
   background-attachment: fixed;
   background-size: auto;
 }
