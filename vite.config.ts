@@ -33,6 +33,9 @@ export default defineConfig({
         short_name: 'SyKOM24',
         description: 'SyKOM24',
         theme_color: '#18181b',
+        background_color: '#18181b',
+        orientation: 'portrait',
+        display: 'standalone',
         icons: [
           {
             src: 'pwa-64x64.png',

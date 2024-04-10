@@ -1,13 +1,13 @@
 <template>
   <div v-if="showPrompt" class="install-pwa">
     <div class="install-pwa-content">
-      <i class="pi pi-info-circle install-pwa-icon"></i>
+      <font-awesome-icon :icon="['fas', 'circle-info']" class="install-pwa-icon" />
       <span class="install-pwa-text"
-        >Installieren Sie diese App auf Ihrem Homescreen, um schnell darauf zuzugreifen.</span
+        >Installiere die App auf dem Homescreen, um schnell darauf zuzugreifen.</span
       >
-      <button @click="installPWA" class="p-button p-button-outlined install-pwa-button">
+      <Button @click="installPWA" class="p-button p-button-outlined install-pwa-button">
         Installieren
-      </button>
+      </Button>
     </div>
   </div>
 </template>
@@ -52,16 +52,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .install-pwa {
   position: fixed;
   bottom: 20px;
-  right: 20px;
-  background-color: #333333; /* Dunkle Hintergrundfarbe */
-  border: 1px solid #3498db; /* Farbe des Rahmens */
+  right: auto;
+  left: auto;
+  background-color: var(--surface-100); /* Dunkle Hintergrundfarbe */
+  border: 1px solid var(--primary-color); /* Farbe des Rahmens */
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .install-pwa-content {
@@ -71,7 +73,7 @@ export default {
 
 .install-pwa-icon {
   font-size: 2rem;
-  color: #3498db; /* Farbe des Informations-Icons */
+  color: var(--primary-color); /* Farbe des Informations-Icons */
   margin-right: 10px;
 }
 
