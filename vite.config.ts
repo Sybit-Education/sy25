@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     VitePWA({
       devOptions: {
-        enabled: true
+        enabled: false
       },
       registerType: 'autoUpdate',
       includeAssets: [

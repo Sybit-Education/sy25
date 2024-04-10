@@ -1,12 +1,15 @@
 <template>
-  <div v-if="showPrompt" class="install-pwa">
+  <div v-if="showPrompt && !installationDeclinedLocally" class="install-pwa">
     <div class="install-pwa-content">
       <font-awesome-icon :icon="['fas', 'circle-info']" class="install-pwa-icon" />
       <span class="install-pwa-text"
         >Installiere die App auf dem Homescreen, um schnell darauf zuzugreifen.</span
       >
       <Button @click="installPWA" class="p-button install-pwa-button" severity="info">
-        Installieren
+        <font-awesome-icon :icon="['fas', 'mobile-screen-button']" />
+      </Button>
+      <Button @click="declineInstallation" class="p-button p-button-outlined install-pwa-button">
+        <font-awesome-icon :icon="['fas', 'ban']" />
       </Button>
     </div>
   </div>
@@ -18,11 +21,13 @@ export default {
   data() {
     return {
       showPrompt: false,
-      deferredPrompt: null
+      deferredPrompt: null,
+      installationDeclined: false
     }
   },
   mounted() {
     window.addEventListener('beforeinstallprompt', this.onBeforeInstallPrompt)
+    this.checkInstallationDeclined()
   },
   beforeUnmount() {
     window.removeEventListener('beforeinstallprompt', this.onBeforeInstallPrompt)
@@ -45,7 +50,24 @@ export default {
           }
           this.showPrompt = false
           this.deferredPrompt = null
+          if (choiceResult.outcome === 'declined') {
+            this.declineInstallationLocally() // Funktion zum Speichern der lokalen Ablehnung aufrufen
+          }
         })
+      }
+    },
+    declineInstallation() {
+      this.showPrompt = false
+      this.declineInstallationLocally() // Funktion zum Speichern der lokalen Ablehnung aufrufen
+    },
+    declineInstallationLocally() {
+      localStorage.setItem('installationDeclined', 'true')
+      this.installationDeclinedLocally = true
+    },
+    checkInstallationDeclined() {
+      const declined = localStorage.getItem('installationDeclined')
+      if (declined === 'true') {
+        this.installationDeclinedLocally = true
       }
     }
   }
