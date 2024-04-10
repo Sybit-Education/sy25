@@ -5,7 +5,7 @@
       <span class="install-pwa-text"
         >Installiere die App auf dem Homescreen, um schnell darauf zuzugreifen.</span
       >
-      <Button @click="installPWA" class="p-button p-button-outlined install-pwa-button">
+      <Button @click="installPWA" class="p-button install-pwa-button" severity="info">
         Installieren
       </Button>
     </div>
@@ -73,17 +73,10 @@ export default {
 
 .install-pwa-icon {
   font-size: 2rem;
-  color: var(--primary-color); /* Farbe des Informations-Icons */
-  margin-right: 10px;
-}
-
-.install-pwa-text {
-  font-size: 1rem;
-  color: #ffffff; /* Weiße Textfarbe */
+  margin-right: 0.5rem;
 }
 
 .install-pwa-button {
   margin-left: auto;
-  color: #3498db; /* Farbe der Installations-Schaltfläche */
 }
 </style>
