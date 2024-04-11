@@ -18,6 +18,7 @@ declare module 'vue' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     JumpToCurrentButton: typeof import('./src/components/JumpToCurrentButton.vue')['default']
+    MarkdownText: typeof import('./src/components/MarkdownText.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']

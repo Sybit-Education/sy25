@@ -102,9 +102,6 @@ export default defineComponent({
   right: 20px;
   padding: 10px;
   z-index: 1000;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
   &:hover {
     background-color: var(--primary-color);
     color: var(--surface-100);

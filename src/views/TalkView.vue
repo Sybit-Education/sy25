@@ -1,7 +1,7 @@
 <template>
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
-    <div v-if="talk">
+    <div v-if="talk" class="talk">
       <router-link :to="`/`">
         <Button class="mr-3" severity="secondary">
           <font-awesome-icon :icon="['fas', 'chevron-left']" class="mr-1" />
@@ -10,10 +10,16 @@
       </router-link>
       <Card class="talk-item m-1">
         <template #title>
-          <TalkItem :talkId="talkId"></TalkItem>
+          <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
         </template>
-        <template #subtitle><SpeakerItem :talkId="talkId"></SpeakerItem></template>
-        <template #content> {{ talk.description }}</template>
+        <template #subtitle>
+          <div class="talk__speaker">
+            <SpeakerItem :talkId="talkId" :show-title="true"></SpeakerItem>
+          </div>
+        </template>
+        <template #content>
+          <markdown-text class="talk__description" :text="talk.description" />
+        </template>
       </Card>
     </div>
   </div>
