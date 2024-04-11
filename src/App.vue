@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import HeaderBar from './components/HeaderBar.vue'
-import NavigationBar from './components/NavigationBar.vue'
 import PwaPrompt from './components/PwaPrompt.vue'
 </script>
 
@@ -13,7 +12,6 @@ import PwaPrompt from './components/PwaPrompt.vue'
     <RouterView />
   </main>
   <footer>
-    <NavigationBar />
     <PwaPrompt />
   </footer>
 </template>
@@ -24,8 +22,12 @@ body {
   background-attachment: fixed;
   background-size: auto;
 }
-main {
+.container {
   margin-top: 3.5rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 0.5rem;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 </style>
