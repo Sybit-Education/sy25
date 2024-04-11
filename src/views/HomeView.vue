@@ -81,13 +81,13 @@ export default defineComponent({
         document.getElementsByName('active-agenda')
       )
 
-      if (eventElementList) {
+      if (eventElementList && eventElementList[0]) {
         eventElementList[0].scrollIntoView({
           behavior: 'instant',
           block: 'start',
           inline: 'nearest'
         })
-        const navbarHeight = 85 /* Höhe deiner Navigationsleiste */
+        const navbarHeight = 90 /* Höhe deiner Navigationsleiste */
         window.scrollTo({ top: window.scrollY - navbarHeight, behavior: 'smooth' })
       }
     }
@@ -98,7 +98,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .jump-to-current-button {
   position: fixed;
-  bottom: 60px;
+  bottom: 65px;
   right: 20px;
   padding: 10px;
   z-index: 1000;
