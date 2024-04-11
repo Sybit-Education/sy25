@@ -17,7 +17,6 @@ declare module 'vue' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
-    JumpToCurrentButton: typeof import('./src/components/JumpToCurrentButton.vue')['default']
     MarkdownText: typeof import('./src/components/MarkdownText.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']
@@ -28,7 +27,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SpeakerItem: typeof import('./src/components/SpeakerItem.vue')['default']
     SykomLogo: typeof import('./src/components/icons/SykomLogo.vue')['default']
-    TabMenu: typeof import('primevue/tabmenu')['default']
     TalkItem: typeof import('./src/components/TalkItem.vue')['default']
   }
 }

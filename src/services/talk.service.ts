@@ -16,7 +16,7 @@ const agendaService = {
                 id: partialRecords.id,
                 title: partialRecords.fields.Titel as string,
                 isPause: partialRecords.fields.Pause as boolean,
-                speaker: partialRecords.fields.Referent as string,
+                speaker: partialRecords.fields.Referent as string[],
                 description: partialRecords.fields.Beschreibung as string
               })
             })
