@@ -28,11 +28,7 @@ export const useAgendaStore = defineStore('agenda', {
         this.agendaList = result as Array<Agenda>
 
         this.agendaList.sort((a, b) => {
-          const dateComparison = a.date.toDateString().localeCompare(b.date.toDateString())
-          if (dateComparison === 0) {
-            return a.date.getTime() - b.date.getTime()
-          }
-          return dateComparison
+          return a.date.getTime() - b.date.getTime()
         })
 
         // Zweistufiges Gruppieren nach Datum und dann nach Uhrzeit
@@ -51,7 +47,7 @@ export const useAgendaStore = defineStore('agenda', {
         })
 
         this.groupedList = groupedAgenda
-        
+
         loadingStore.updateLoading(false)
       })
     }
