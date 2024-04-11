@@ -16,7 +16,9 @@ const agendaService = {
             partialRecords.forEach((partialRecords) => {
               items.push({
                 id: partialRecords.id,
-                date: new Date(partialRecords.fields.Datum as string) ,
+                date: new Date(partialRecords.fields.Datum as string),
+                endTime: undefined,
+                isActive: false,
                 duration: partialRecords.fields.Dauer as number,
                 room: partialRecords.fields.Raum as string,
                 talk: partialRecords.fields.Vortrag as string

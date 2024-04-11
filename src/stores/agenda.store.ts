@@ -35,6 +35,7 @@ export const useAgendaStore = defineStore('agenda', {
         type GroupedAgenda = Record<string, Record<string, Agenda[]>>
         const groupedAgenda: GroupedAgenda = {}
         this.agendaList.forEach((agenda) => {
+          agenda.endTime = new Date(agenda.date.getTime() + agenda.duration * 1000)
           const dateKey = agenda.date.toDateString()
           const timeKey = agenda.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           if (!groupedAgenda[dateKey]) {

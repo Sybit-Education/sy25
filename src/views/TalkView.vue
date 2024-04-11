@@ -13,13 +13,32 @@
           <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
         </template>
         <template #subtitle>
+          <div class="my-3">
+            <span>
+              {{
+                new Intl.DateTimeFormat('de-DE', {
+                  timeStyle: 'short'
+                }).format(agenda.date)
+              }}
+              <span v-if="agenda.endTime"
+                >-
+                {{
+                  new Intl.DateTimeFormat('de-DE', {
+                    timeStyle: 'short'
+                  }).format(agenda.endTime)
+                }}</span
+              >
+              Uhr
+            </span>
+            <span v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
+              Dauer: <font-awesome-icon :icon="['fas', 'clock']" /> {{ agenda.duration / 60 }} min.
+            </span>
+          </div>
           <Badge v-if="talk.tag" :value="talk.tag" class="talk__tag" />
           <span v-if="agenda.room" class="my-3">
             Raum: <RoomItem :roomId="agenda.room[0]"></RoomItem>
           </span>
-          <span v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
-            Dauer: <font-awesome-icon :icon="['fas', 'clock']" /> {{ agenda.duration / 60 }} min.
-          </span>
+
           <div class="talk__speaker my-3">
             <SpeakerItem :talkId="talkId" :show-title="true"></SpeakerItem>
           </div>
