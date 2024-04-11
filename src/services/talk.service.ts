@@ -17,7 +17,8 @@ const agendaService = {
                 title: partialRecords.fields.Titel as string,
                 isPause: partialRecords.fields.Pause as boolean,
                 speaker: partialRecords.fields.Referent as string[],
-                description: partialRecords.fields.Beschreibung as string
+                description: partialRecords.fields.Beschreibung as string,
+                tag: partialRecords.fields.Tag as string
               })
             })
             fetchNextPage()

@@ -1,6 +1,6 @@
 <template>
   <a v-if="isActiveTalk" name="active-agenda" ref="active-agenda" />
-  <router-link :to="`/talk/${agenda.talk}`">
+  <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
     <Card class="agenda-item m-1" :class="statusClass">
       <template #title>
         <div class="flex flex-col">

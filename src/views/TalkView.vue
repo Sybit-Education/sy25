@@ -13,11 +13,19 @@
           <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
         </template>
         <template #subtitle>
-          <div class="talk__speaker">
+          <Badge v-if="talk.tag" :value="talk.tag" class="talk__tag" />
+          <span v-if="agenda.room" class="my-3">
+            Raum: <RoomItem :roomId="agenda.room[0]"></RoomItem>
+          </span>
+          <span v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
+            Dauer: <font-awesome-icon :icon="['fas', 'clock']" /> {{ agenda.duration / 60 }} min.
+          </span>
+          <div class="talk__speaker my-3">
             <SpeakerItem :talkId="talkId" :show-title="true"></SpeakerItem>
           </div>
         </template>
         <template #content>
+          <hr />
           <markdown-text class="talk__description" :text="talk.description" />
         </template>
       </Card>
@@ -29,14 +37,20 @@
 import { mapState } from 'pinia'
 import { useLoadingStore } from '../stores/loading.store'
 import { useTalkStore } from '@/stores/talk.store'
+import { useAgendaStore } from '../stores/agenda.store'
 import { defineComponent } from 'vue'
 import SpeakerItem from '@/components/SpeakerItem.vue'
+import RoomItem from '@/components/RoomItem.vue'
 
 export default defineComponent({
   name: 'TalkView',
-  components: { SpeakerItem },
+  components: { SpeakerItem, RoomItem },
 
   props: {
+    agendaId: {
+      type: String,
+      required: true
+    },
     talkId: {
       type: String,
       required: true
@@ -49,9 +63,26 @@ export default defineComponent({
     ...mapState(useLoadingStore, {
       showLoadingSpinner: (store) => store.showLoadingSpinner as boolean
     }),
+    ...mapState(useAgendaStore, {
+      agendaById: (state) => state.getById
+    }),
     talk() {
       return this.talkById(this.talkId)
+    },
+    agenda() {
+      return this.agendaById(this.agendaId)
     }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.talk__description {
+  line-height: 1.5rem;
+}
+.talk__tag {
+  position: absolute;
+  right: 20px;
+  top: 85px;
+}
+</style>

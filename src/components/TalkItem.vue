@@ -1,8 +1,12 @@
 <template>
   <span v-if="talk">
-    <font-awesome-icon v-if="!talk.isPause" :icon="['fas', 'microphone-lines']" />
-    <font-awesome-icon v-else :icon="['fas', 'mug-saucer']" />
-    <span class="mx-2">{{ talk.title }}</span>
+    <div class="flex flex-col">
+      <font-awesome-icon v-if="!talk.isPause" :icon="['fas', 'microphone-lines']" class="flex-0" />
+      <font-awesome-icon v-else :icon="['fas', 'mug-saucer']" class="flex-0" />
+      <span class="mx-2 flex-1">
+        {{ talk.title }}
+      </span>
+    </div>
   </span>
 </template>
 <script lang="ts">

@@ -27,7 +27,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/talk/:talkId',
+      path: '/talk/:talkId/:agendaId',
       name: 'talk',
       props: true,
       component: TalkView

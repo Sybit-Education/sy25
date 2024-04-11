@@ -4,4 +4,5 @@ export interface Talk {
   isPause: boolean
   speaker: Array<string>
   description: string
+  tag: string
 }
