@@ -51,7 +51,7 @@ export default defineComponent({
       const currentDate = new Date()
       if (
         currentDate.getTime() > this.agenda.date.getTime() &&
-        currentDate.getTime() < this.agenda.date.getTime() + this.agenda.duration * 60 * 1000
+        currentDate.getTime() < this.endTime.getTime()
       ) {
         return true
       } else {
@@ -60,7 +60,7 @@ export default defineComponent({
     },
     isBeforeNow() {
       const currentDate = new Date()
-      if (this.agenda.date.getTime() + this.agenda.duration < currentDate.getTime()) {
+      if (this.endTime.getTime() < currentDate.getTime()) {
         return true
       } else {
         return false
@@ -74,6 +74,9 @@ export default defineComponent({
       } else {
         return ''
       }
+    },
+    endTime() {
+      return new Date(this.agenda.date.getTime() + this.agenda.duration * 1000)
     }
   }
 })
