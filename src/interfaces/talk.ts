@@ -2,6 +2,6 @@ export interface Talk {
   id: string
   title: string
   isPause: boolean
-  speaker: string
+  speaker: Array<string>
   description: string
 }

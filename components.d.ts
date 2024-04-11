@@ -10,7 +10,6 @@ declare module 'vue' {
     AgendaItem: typeof import('./src/components/AgendaItem.vue')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
-    Carousel: typeof import('primevue/carousel')['default']
     Chip: typeof import('primevue/chip')['default']
     HeaderBar: typeof import('./src/components/HeaderBar.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
@@ -18,11 +17,11 @@ declare module 'vue' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    JumpToCurrentButton: typeof import('./src/components/JumpToCurrentButton.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     PwaPrompt: typeof import('./src/components/PwaPrompt.vue')['default']
-    PwaPromt: typeof import('./src/components/PwaPromt.vue')['default']
     RoomItem: typeof import('./src/components/RoomItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -30,6 +29,5 @@ declare module 'vue' {
     SykomLogo: typeof import('./src/components/icons/SykomLogo.vue')['default']
     TabMenu: typeof import('primevue/tabmenu')['default']
     TalkItem: typeof import('./src/components/TalkItem.vue')['default']
-    Timeline: typeof import('primevue/timeline')['default']
   }
 }

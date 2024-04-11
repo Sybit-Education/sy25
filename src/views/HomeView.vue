@@ -19,6 +19,9 @@
       </div>
       <hr class="my-5" />
     </div>
+    <Button rounded @click="scrollToActiveEvent()" class="jump-to-current-button"
+      ><font-awesome-icon :icon="['far', 'clock']"
+    /></Button>
   </div>
 </template>
 
@@ -71,6 +74,43 @@ export default defineComponent({
       groupedList: (store) =>
         store.groupedList as Record<string, Record<string, Agenda[]>> | undefined
     })
+  },
+  methods: {
+    scrollToActiveEvent() {
+      const eventElementList: HTMLElement[] = Array.from(
+        document.getElementsByName('active-agenda')
+      )
+
+      if (eventElementList) {
+        eventElementList[0].scrollIntoView({
+          behavior: 'instant',
+          block: 'start',
+          inline: 'nearest'
+        })
+        const navbarHeight = 85 /* Höhe deiner Navigationsleiste */
+        window.scrollTo({ top: window.scrollY - navbarHeight, behavior: 'smooth' })
+      }
+    }
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.jump-to-current-button {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  padding: 10px;
+  z-index: 1000;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--surface-100);
+  }
+  svg {
+    font-size: 2rem;
+  }
+}
+</style>

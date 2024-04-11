@@ -1,7 +1,7 @@
 <template>
-  <span v-if="talk">
-    <span>{{ speaker?.name }}</span>  
-    <span v-if="speaker?.title">, {{ speaker.title }}</span>
+  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="mr-3">
+    <span><font-awesome-icon :icon="['far', 'user']" /> {{ speaker?.name }}</span>
+    <span v-if="showTitle && speaker?.title">, {{ speaker.title }}</span>
   </span>
 </template>
 <script lang="ts">
@@ -19,6 +19,10 @@ export default defineComponent({
       type: String,
       required: false,
       default: undefined
+    },
+    showTitle: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -35,9 +39,15 @@ export default defineComponent({
         return undefined
       }
     },
-    speaker(): Speaker | undefined {
+    speakers(): Speaker[] | undefined {
       if (this.talk && this.talk.speaker) {
-        return this.getSpeakerById(this.talk.speaker[0])
+        const speakerList: Array<Speaker> = []
+        for (let index = 0; index < this.talk.speaker.length; index++) {
+          const speakerId = this.talk.speaker[index]
+          speakerList.push(this.getSpeakerById(speakerId))
+        }
+
+        return speakerList
       } else {
         return undefined
       }
