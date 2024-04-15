@@ -8,7 +8,7 @@ import PwaPrompt from './components/PwaPrompt.vue'
   <header>
     <HeaderBar></HeaderBar>
   </header>
-  <main class="container md:mx-auto">
+  <main>
     <RouterView />
   </main>
   <footer>
@@ -22,7 +22,7 @@ body {
   background-attachment: fixed;
   background-size: auto;
 }
-.container {
+main {
   margin-top: 3.5rem;
   margin-bottom: 0.5rem;
   padding-top: env(safe-area-inset-top);

@@ -11,18 +11,21 @@
       </h2>
       <div v-for="(timeGroup, time) in dateGroup" :key="time">
         <h3 class="mx-3">{{ time }} Uhr</h3>
-        <agenda-item
-          v-for="agendaItem in timeGroup"
-          :key="agendaItem.date.getTime()"
-          :agenda="agendaItem"
-        ></agenda-item>
+        <div class="flex flex-row md:flex-col">
+          <agenda-item
+            v-for="agendaItem in timeGroup"
+            :key="agendaItem.date.getTime()"
+            :agenda="agendaItem"
+            class="flex-1 md:flex-0"
+          />
+        </div>
       </div>
       <hr class="my-5" />
     </div>
-    <Button rounded @click="scrollToActiveEvent()" class="jump-to-current-button"
-      ><font-awesome-icon :icon="['far', 'clock']"
-    /></Button>
   </div>
+  <Button rounded @click="scrollToActiveEvent()" class="jump-to-current-button"
+    ><font-awesome-icon :icon="['far', 'clock']"
+  /></Button>
 </template>
 
 <script lang="ts">
@@ -65,6 +68,10 @@ export default defineComponent({
       ]
     }
   },
+  mounted() {
+    this.updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
+    setInterval(this.updateActiveAgendaItems, 60000) // Alle Minute aktualisieren
+  },
   computed: {
     ...mapState(useLoadingStore, {
       showLoadingSpinner: (store) => store.showLoadingSpinner as boolean
@@ -76,6 +83,21 @@ export default defineComponent({
     })
   },
   methods: {
+    updateActiveAgendaItems() {
+      const currentDate = new Date()
+
+      this.agendaList.forEach((agenda: Agenda) => {
+        const endTime = new Date(agenda.date.getTime() + agenda.duration * 1000)
+        if (
+          currentDate.getTime() > agenda.date.getTime() &&
+          currentDate.getTime() < endTime.getTime()
+        ) {
+          agenda.isActive = true
+        } else {
+          agenda.isActive = false
+        }
+      })
+    },
     scrollToActiveEvent() {
       const eventElementList: HTMLElement[] = Array.from(
         document.getElementsByName('active-agenda')
