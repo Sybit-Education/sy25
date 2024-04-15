@@ -11,7 +11,7 @@
       </h2>
       <div v-for="(timeGroup, time) in dateGroup" :key="time">
         <h3 class="mx-3">{{ time }} Uhr</h3>
-        <div class="flex flex-row md:flex-col">
+        <div class="grid grid-cols-1 md:grid-cols-6">
           <agenda-item
             v-for="agendaItem in timeGroup"
             :key="agendaItem.date.getTime()"
