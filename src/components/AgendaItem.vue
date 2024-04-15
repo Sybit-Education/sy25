@@ -2,7 +2,7 @@
   <div>
     <a v-if="agenda.isActive" name="active-agenda" ref="active-agenda" />
     <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
-      <Card class="agenda-item m-1" :class="statusClass">
+      <Card class="agenda-item m-1" :class="statusClass" :style="`min-height: ${agenda.duration/15}px`">
         <template #title>
           <div class="flex flex-col">
             <TalkItem :talkId="agenda.talk[0]" class="flex-1"></TalkItem>
@@ -55,7 +55,7 @@ export default defineComponent({
   computed: {
     isBeforeNow() {
       const currentDate = new Date()
-      if (this.endTime.getTime() < currentDate.getTime()) {
+      if (this.agenda.endTime && (this.agenda.endTime.getTime() < currentDate.getTime())) {
         return true
       } else {
         return false
@@ -69,9 +69,6 @@ export default defineComponent({
       } else {
         return ''
       }
-    },
-    endTime() {
-      return new Date(this.agenda.date.getTime() + this.agenda.duration * 1000)
     }
   }
 })

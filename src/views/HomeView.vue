@@ -1,6 +1,6 @@
 <template>
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
-  <div v-else>
+  <div v-else @refresh="refreshData">
     <div v-for="(dateGroup, date) in groupedList" :key="date">
       <h2 class="mx-3">
         {{
@@ -23,7 +23,7 @@
       <hr class="my-5" />
     </div>
   </div>
-  <Button rounded @click="scrollToActiveEvent()" class="jump-to-current-button"
+  <Button v-if="hasActiveAgendaItem" @click="scrollToActiveEvent()" class="jump-to-current-button" rounded
     ><font-awesome-icon :icon="['far', 'clock']"
   /></Button>
 </template>
@@ -44,6 +44,8 @@ export default defineComponent({
   data() {
     return {
       products: null,
+      hasActiveAgendaItem: false,
+      autoReloadInterval: null as number | null,
       galleryResponsiveOptions: [
         {
           breakpoint: '1400px',
@@ -69,8 +71,14 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
-    setInterval(this.updateActiveAgendaItems, 60000) // Alle Minute aktualisieren
+    this.$nextTick(() => {
+      this.updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
+      this.scrollToActiveEvent()
+    })
+    this.autoReloadInterval = setInterval(this.updateActiveAgendaItems, 1000) // Alle 10 sec aktualisieren
+  },
+  unmounted() {
+    clearInterval(this.autoReloadInterval as number)
   },
   computed: {
     ...mapState(useLoadingStore, {
@@ -83,9 +91,14 @@ export default defineComponent({
     })
   },
   methods: {
+    refreshData() {
+      // Lade die Agenda-Elemente neu von der REST-API
+      useAgendaStore().init();
+    },    
     updateActiveAgendaItems() {
       const currentDate = new Date()
 
+      this.hasActiveAgendaItem = false
       this.agendaList.forEach((agenda: Agenda) => {
         const endTime = new Date(agenda.date.getTime() + agenda.duration * 1000)
         if (
@@ -93,6 +106,7 @@ export default defineComponent({
           currentDate.getTime() < endTime.getTime()
         ) {
           agenda.isActive = true
+          this.hasActiveAgendaItem = true
         } else {
           agenda.isActive = false
         }
