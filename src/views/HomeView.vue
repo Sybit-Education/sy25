@@ -115,7 +115,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .jump-to-current-button {
   position: fixed;
-  bottom: 65px;
+  bottom: 45px;
   right: 20px;
   padding: 10px;
   z-index: 1000;
