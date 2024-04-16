@@ -68,6 +68,7 @@ export default defineComponent({
 
 <style lang="scss">
 .agenda-item {
+  max-height: 66vh;
   text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
   background-color: rgba($color: #27272c, $alpha: 0.8);
 }
