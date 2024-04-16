@@ -44,8 +44,6 @@ export default defineComponent({
   data() {
     return {
       products: null,
-      hasActiveAgendaItem: false,
-      autoReloadInterval: null as number | null,
       galleryResponsiveOptions: [
         {
           breakpoint: '1400px',
@@ -72,13 +70,10 @@ export default defineComponent({
   },
   mounted() {
     this.$nextTick(() => {
-      this.updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
+      useAgendaStore().updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
       this.scrollToActiveEvent()
     })
-    this.autoReloadInterval = setInterval(this.updateActiveAgendaItems, 1000) // Alle 10 sec aktualisieren
-  },
-  unmounted() {
-    clearInterval(this.autoReloadInterval as number)
+   
   },
   computed: {
     ...mapState(useLoadingStore, {
@@ -87,32 +82,18 @@ export default defineComponent({
     ...mapState(useAgendaStore, {
       agendaList: (store) => store.agendaList as Array<Agenda>,
       groupedList: (store) =>
-        store.groupedList as Record<string, Record<string, Agenda[]>> | undefined
+        store.groupedList as Record<string, Record<string, Agenda[]>> | undefined,
+      hasActiveAgendaItem: (store) => store.hasActiveAgendaItem as boolean
     })
   },
   methods: {
     refreshData() {
       // Lade die Agenda-Elemente neu von der REST-API
-      useAgendaStore().init();
+      useAgendaStore().loadItems();
     },    
-    updateActiveAgendaItems() {
-      const currentDate = new Date()
-
-      this.hasActiveAgendaItem = false
-      this.agendaList.forEach((agenda: Agenda) => {
-        const endTime = new Date(agenda.date.getTime() + agenda.duration * 1000)
-        if (
-          currentDate.getTime() > agenda.date.getTime() &&
-          currentDate.getTime() < endTime.getTime()
-        ) {
-          agenda.isActive = true
-          this.hasActiveAgendaItem = true
-        } else {
-          agenda.isActive = false
-        }
-      })
-    },
+    
     scrollToActiveEvent() {
+      this.refreshData()
       const eventElementList: HTMLElement[] = Array.from(
         document.getElementsByName('active-agenda')
       )

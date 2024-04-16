@@ -15,8 +15,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'PwaPrompt',
   data() {
     return {
@@ -71,13 +73,13 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
 .install-pwa {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: auto;
   left: auto;
   background-color: var(--surface-100); /* Dunkle Hintergrundfarbe */

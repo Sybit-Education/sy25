@@ -1,14 +1,14 @@
 <template>
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
-    <div v-if="talk" class="talk">
+    <div v-if="talk">
       <router-link :to="`/`">
         <Button class="mr-3" severity="secondary">
           <font-awesome-icon :icon="['fas', 'chevron-left']" class="mr-1" />
           Übersicht
         </Button>
       </router-link>
-      <Card class="talk-item m-1">
+      <Card class="talk m-1" :class="typeCssClass">
         <template #title>
           <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
         </template>
@@ -90,12 +90,30 @@ export default defineComponent({
     },
     agenda() {
       return this.agendaById(this.agendaId)
+    },
+    typeCssClass() {
+      return this.talk.isPause ? 'talk--pause' : 'talk--talk'
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
+.talk {
+  min-height: 75vh
+}
+.talk--talk {
+  background-image: url('/img/microphone.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 50%;
+}
+.talk--pause {
+  background-image: url('/img/coffee.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 50%;
+}
 .talk__description {
   line-height: 1.5rem;
 }

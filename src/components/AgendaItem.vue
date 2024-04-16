@@ -53,18 +53,10 @@ export default defineComponent({
     }
   },
   computed: {
-    isBeforeNow() {
-      const currentDate = new Date()
-      if (this.agenda.endTime && (this.agenda.endTime.getTime() < currentDate.getTime())) {
-        return true
-      } else {
-        return false
-      }
-    },
     statusClass() {
       if (this.agenda.isActive) {
         return 'live'
-      } else if (this.isBeforeNow) {
+      } else if (this.agenda.isBeforeNow) {
         return 'before-now'
       } else {
         return ''
@@ -74,7 +66,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .agenda-item {
   text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
   background-color: rgba($color: #27272c, $alpha: 0.8);
@@ -97,7 +89,8 @@ a {
 }
 .before-now {
   background-color: rgba($color: #191919, $alpha: 0.7);
-  .p-card-body {
+  text-shadow: none;
+  .p-card-body, .p-card {
     color: #666;
   }
 }

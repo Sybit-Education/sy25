@@ -5,6 +5,8 @@ import type { Agenda } from '@/interfaces/agenda'
 
 interface State {
   agendaList: Agenda[]
+  hasActiveAgendaItem: boolean
+  autoReloadInterval: number | undefined
   groupedList: Record<string, Record<string, Agenda[]>> | undefined
 }
 
@@ -12,6 +14,8 @@ export const useAgendaStore = defineStore('agenda', {
   state: (): State => {
     return {
       agendaList: [],
+      hasActiveAgendaItem: false,
+      autoReloadInterval: undefined,
       groupedList: undefined
     }
   },
@@ -22,6 +26,11 @@ export const useAgendaStore = defineStore('agenda', {
   },
   actions: {
     async init(): Promise<void> {
+ 
+      this.loadItems()
+      this.autoReloadInterval = setInterval(this.updateActiveAgendaItems, 1000) // Alle 10 sec aktualisieren
+    },
+    loadItems(): void {
       const loadingStore = useLoadingStore()
       loadingStore.updateLoading(true)
       agendaService.getAll().then((result) => {
@@ -48,9 +57,29 @@ export const useAgendaStore = defineStore('agenda', {
         })
 
         this.groupedList = groupedAgenda
-
         loadingStore.updateLoading(false)
       })
-    }
+    },
+    updateActiveAgendaItems() {
+      console.log('updateActiveAgendaItems');
+      
+      const currentDate = new Date()
+
+      this.hasActiveAgendaItem = false
+      this.agendaList.forEach((agenda: Agenda) => {
+        const endTime = new Date(agenda.date.getTime() + agenda.duration * 1000)
+        if (
+          currentDate.getTime() > agenda.date.getTime() &&
+          currentDate.getTime() < endTime.getTime()
+        ) {
+          agenda.isActive = true
+          this.hasActiveAgendaItem = true
+        } else {
+          agenda.isActive = false
+        }
+
+        agenda.isBeforeNow = currentDate.getTime() > endTime.getTime()
+      })
+    },
   }
 })

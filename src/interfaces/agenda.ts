@@ -6,4 +6,5 @@ export interface Agenda {
   room: string
   talk: string
   isActive: boolean
+  isBeforeNow: boolean
 }
