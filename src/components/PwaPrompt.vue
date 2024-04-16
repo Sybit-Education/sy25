@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -64,12 +64,12 @@ export default defineComponent({
     },
     declineInstallationLocally() {
       localStorage.setItem('installationDeclined', 'true')
-      this.installationDeclinedLocally = true
+      this.installationDeclined = true
     },
     checkInstallationDeclined() {
       const declined = localStorage.getItem('installationDeclined')
       if (declined === 'true') {
-        this.installationDeclinedLocally = true
+        this.installationDeclined = true
       }
     }
   }

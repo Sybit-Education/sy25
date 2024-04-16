@@ -19,6 +19,7 @@ const agendaService = {
                 date: new Date(partialRecords.fields.Datum as string),
                 endTime: undefined,
                 isActive: false,
+                isBeforeNow: false,
                 duration: partialRecords.fields.Dauer as number,
                 room: partialRecords.fields.Raum as string,
                 talk: partialRecords.fields.Vortrag as string
