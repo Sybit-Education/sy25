@@ -1,5 +1,5 @@
 <template>
-  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="mr-3">
+  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="mr-5 speaker">
     <span><font-awesome-icon :icon="['far', 'user']" /> {{ speaker?.name }}</span>
     <span v-if="showTitle && speaker?.title">, {{ speaker.title }}</span>
   </span>
@@ -55,3 +55,9 @@ export default defineComponent({
   }
 })
 </script>
+<style lang="scss">
+.speaker {
+  white-space: nowrap;
+  line-height: 1.75rem;
+}
+</style>

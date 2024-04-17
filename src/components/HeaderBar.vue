@@ -1,5 +1,5 @@
 <template>
-  <nav class="header-bar px-3 flex flex-cols">
+  <nav class="header-bar px-2 flex flex-cols">
     <div class="text-left flex-1">
       <RouterLink v-if="showBackButton" to="/" class="flex-1 text-center">
         <Button  class="m-1" rounded style="padding-left:14px"><font-awesome-icon :icon="['fas', 'chevron-left']" /></Button>

@@ -2,7 +2,7 @@
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
     <div v-if="talk">
-      <Card class="talk m-1 mt-3" :class="typeCssClass">
+      <Card class="talk mt-8 mb-3" :class="typeCssClass">
         <template #title>
           <TalkItem :talkId="talkId" class="talk__title my-2"></TalkItem>
         </template>
