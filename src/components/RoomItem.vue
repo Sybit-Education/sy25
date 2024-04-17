@@ -7,10 +7,10 @@
     <template #subtitle></template>
     <template #content>
       <markdown-text class="room__notes" :text="room.notes" />
-      <img v-if="room.image" :src="room.image" alt="Raum" class="room__map" />
-      <img src="/img/stadthalle-header.png" alt="Raum" class="room__image" />
     </template>
   </Card>
+  <img v-if="room.image" :src="room.image" alt="Raum" class="room__map" />
+      <img src="/img/stadthalle-header.png" alt="Raum" class="room__image" />  
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
