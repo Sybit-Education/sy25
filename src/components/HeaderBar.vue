@@ -2,7 +2,7 @@
   <nav class="header-bar px-3 flex flex-cols">
     <div class="text-left flex-1">
       <RouterLink v-if="showBackButton" to="/" class="flex-1 text-center">
-        <Button  class="m-1" rounded icon>
+        <Button  class="m-1" rounded>
           <font-awesome-icon :icon="['fas', 'chevron-left']" />
         </Button>
       </RouterLink>
@@ -13,11 +13,11 @@
     </RouterLink>
     <div class="text-right flex-1">
       <RouterLink to="/about" class="flex-1">
-        <Button class="m-1" outlined rounded icon>
+        <Button class="m-1" outlined rounded>
           <font-awesome-icon :icon="['fas', 'info']" />
         </Button>
       </RouterLink>      
-      <Button @click="reload" class="m-1" outlined rounded icon="fas sync-alt">
+      <Button @click="reload" class="m-1" outlined rounded>
         <font-awesome-icon :icon="['fas', 'sync']" />
       </Button>
     </div>
