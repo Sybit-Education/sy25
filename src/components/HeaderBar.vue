@@ -2,9 +2,7 @@
   <nav class="header-bar px-3 flex flex-cols">
     <div class="text-left flex-1">
       <RouterLink v-if="showBackButton" to="/" class="flex-1 text-center">
-        <Button  class="m-1" rounded>
-          <font-awesome-icon :icon="['fas', 'chevron-left']" />
-        </Button>
+        <Button  class="m-1" rounded style="padding-left:14px"><font-awesome-icon :icon="['fas', 'chevron-left']" /></Button>
       </RouterLink>
       <div v-else class="m-1">&nbsp;</div>
     </div>
@@ -13,13 +11,9 @@
     </RouterLink>
     <div class="text-right flex-1">
       <RouterLink to="/about" class="flex-1">
-        <Button class="m-1" outlined rounded>
-          <font-awesome-icon :icon="['fas', 'info']" />
-        </Button>
+        <Button class="m-1" outlined rounded style="padding-left:17px"><font-awesome-icon :icon="['fas', 'info']" /></Button>
       </RouterLink>      
-      <Button @click="reload" class="m-1" outlined rounded>
-        <font-awesome-icon :icon="['fas', 'sync']" />
-      </Button>
+      <Button @click="reload" class="m-1" outlined rounded style="padding-left:12px"><font-awesome-icon :icon="['fas', 'sync']" /></Button>
     </div>
   </nav>
 </template>
