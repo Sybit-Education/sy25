@@ -1,16 +1,24 @@
 <template>
   <nav class="header-bar px-3 flex flex-cols">
-    <RouterLink to="/" class="flex-1">
-      <img class="logo m-1" src="/img/sykom24.png" alt="logo" />
+    <div class="text-left flex-1">
+      <RouterLink v-if="showBackButton" to="/" class="flex-1 text-center">
+        <Button  class="m-1" rounded icon>
+          <font-awesome-icon :icon="['fas', 'chevron-left']" />
+        </Button>
+      </RouterLink>
+      <div v-else class="m-1">&nbsp;</div>
+    </div>
+    <RouterLink to="/" class="flex-1 text-center">
+      <img class="logo m-2" src="/img/sykom24.png" alt="logo" />
     </RouterLink>
-    <div class="text-right flex-0">
+    <div class="text-right flex-1">
       <RouterLink to="/about" class="flex-1">
-        <Button class="my-1 mx-3" outlined >
+        <Button class="m-1" outlined rounded icon>
           <font-awesome-icon :icon="['fas', 'info']" />
         </Button>
       </RouterLink>      
-      <Button @click="reload" class="my-1 mx-3" outlined >
-        <font-awesome-icon :icon="['fas', 'sync-alt']" />
+      <Button @click="reload" class="m-1" outlined rounded icon="fas sync-alt">
+        <font-awesome-icon :icon="['fas', 'sync']" />
       </Button>
     </div>
   </nav>
@@ -19,10 +27,20 @@
 import { defineComponent } from 'vue'
 import { RouterLink } from 'vue-router'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapState } from 'pinia'
+import { useNavigationStore} from '@/stores/navigation.store'
 
 export default defineComponent({
   name: 'HeaderBar',
   components: { RouterLink, FontAwesomeIcon },
+  computed: {
+    ...mapState(useNavigationStore, {
+      showBackButton: (store) => store.backButton
+    }),
+    ...mapState(useNavigationStore, {
+      backUrl: (store) => store.backUrl
+    }),    
+  }, 
   methods: {
     reload() {
       location.reload()
@@ -48,6 +66,11 @@ export default defineComponent({
   .logo {
     height: 2rem;
     width: auto;
+  }
+
+  button {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 </style>

@@ -23,6 +23,7 @@ declare module 'vue' {
     ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']
     ProgressSpinner: typeof import('primevue/progressspinner')['default']
     PwaPrompt: typeof import('./src/components/PwaPrompt.vue')['default']
+    RoomChip: typeof import('./src/components/RoomChip.vue')['default']
     RoomItem: typeof import('./src/components/RoomItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

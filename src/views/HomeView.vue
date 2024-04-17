@@ -33,7 +33,7 @@ import { defineComponent } from 'vue'
 import { mapState } from 'pinia'
 import { useLoadingStore } from '../stores/loading.store'
 import { useAgendaStore } from '../stores/agenda.store'
-
+import { useNavigationStore} from '@/stores/navigation.store'
 import ProgressOverlay from '../components/ProgressOverlay.vue'
 
 import type { Agenda } from '@/interfaces/agenda'
@@ -69,6 +69,7 @@ export default defineComponent({
     }
   },
   mounted() {
+    useNavigationStore().setBackButtonVisible(false, '/')
     this.$nextTick(() => {
       useAgendaStore().updateActiveAgendaItems() // Rufe die Methode beim Laden der Komponente auf
       this.scrollToActiveEvent()

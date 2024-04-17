@@ -18,7 +18,7 @@
           <div class="flex flex-col">
             <div class="flex-1 flex flex-col xl:flex-row xl:items-start gap-4">
               <div class="flex-1">
-                <RoomItem v-if="agenda.room" :roomId="agenda.room[0]"></RoomItem>
+                <RoomChip v-if="agenda.room" :roomId="agenda.room[0]"></RoomChip>
               </div>
               <div v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
                 <font-awesome-icon :icon="['fas', 'clock']" />
@@ -27,7 +27,7 @@
             </div>
 
             <div class="flex-0 p-text-secondary">
-              <font-awesome-icon :icon="['fas', 'angle-right']" />
+              <font-awesome-icon :icon="['fas', 'chevron-right']" />
             </div>
           </div>
         </template>
@@ -38,14 +38,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import RoomItem from './RoomItem.vue'
+import RoomChip from './RoomChip.vue'
 import TalkItem from './TalkItem.vue'
 import SpeakerItem from './SpeakerItem.vue'
 import type { Agenda } from '../interfaces/agenda'
 
 export default defineComponent({
   name: 'AgendaItem',
-  components: { RoomItem, TalkItem, SpeakerItem },
+  components: { RoomChip, TalkItem, SpeakerItem },
   props: {
     agenda: {
       type: Object as () => Agenda,

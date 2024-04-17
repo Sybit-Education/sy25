@@ -2,12 +2,6 @@
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
     <div v-if="talk">
-      <router-link :to="`/`">
-        <Button class="mr-3" severity="secondary">
-          <font-awesome-icon :icon="['fas', 'chevron-left']" class="mr-1" />
-          Übersicht
-        </Button>
-      </router-link>
       <Card class="talk m-1" :class="typeCssClass">
         <template #title>
           <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
@@ -36,7 +30,7 @@
           </div>
           <Badge v-if="talk.tag" :value="talk.tag" class="talk__tag" />
           <span v-if="agenda.room" class="my-3">
-            Raum: <RoomItem :roomId="agenda.room[0]"></RoomItem>
+            Raum: <RoomChip :roomId="agenda.room[0]"></RoomChip>
           </span>
 
           <div class="talk__speaker my-3">
@@ -57,13 +51,14 @@ import { mapState } from 'pinia'
 import { useLoadingStore } from '../stores/loading.store'
 import { useTalkStore } from '@/stores/talk.store'
 import { useAgendaStore } from '../stores/agenda.store'
+import { useNavigationStore} from '@/stores/navigation.store'
 import { defineComponent } from 'vue'
 import SpeakerItem from '@/components/SpeakerItem.vue'
-import RoomItem from '@/components/RoomItem.vue'
+import RoomChip from '@/components/RoomChip.vue'
 
 export default defineComponent({
   name: 'TalkView',
-  components: { SpeakerItem, RoomItem },
+  components: { SpeakerItem, RoomChip },
 
   props: {
     agendaId: {
@@ -74,6 +69,9 @@ export default defineComponent({
       type: String,
       required: true
     }
+  },
+  mounted() {
+    useNavigationStore().setBackButtonVisible(true, '/')
   },
   computed: {
     ...mapState(useTalkStore, {
