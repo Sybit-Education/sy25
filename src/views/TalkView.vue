@@ -2,9 +2,9 @@
   <ProgressOverlay v-if="showLoadingSpinner" :enabled="showLoadingSpinner" />
   <div v-else>
     <div v-if="talk">
-      <Card class="talk m-1" :class="typeCssClass">
+      <Card class="talk m-1 mt-3" :class="typeCssClass">
         <template #title>
-          <TalkItem :talkId="talkId" class="talk__title"></TalkItem>
+          <TalkItem :talkId="talkId" class="talk__title my-2"></TalkItem>
         </template>
         <template #subtitle>
           <div class="my-3">
@@ -42,6 +42,7 @@
           <markdown-text class="talk__description" :text="talk.description" />
         </template>
       </Card>
+      <RoomItem v-if="agenda.room" :roomId="agenda.room[0]" />
     </div>
   </div>
 </template>
@@ -98,7 +99,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .talk {
-  min-height: 75vh
+  min-height: 50vh
 }
 .talk--talk {
   background-image: url('/img/microphone.png');
@@ -117,7 +118,7 @@ export default defineComponent({
 }
 .talk__tag {
   position: absolute;
-  right: 20px;
-  top: 85px;
+  right: 18px;
+  top: 65px;
 }
 </style>

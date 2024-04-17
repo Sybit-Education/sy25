@@ -15,6 +15,8 @@ const roomService = {
               items.push({
                 id: partialRecords.id,
                 name: partialRecords.fields.Name as string,
+                image: partialRecords.fields.Bild as string,
+                notes: partialRecords.fields.Notes as string,
                 color: partialRecords.fields.Farbe as string
               })
             })

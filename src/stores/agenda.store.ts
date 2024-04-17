@@ -28,7 +28,7 @@ export const useAgendaStore = defineStore('agenda', {
     async init(): Promise<void> {
  
       this.loadItems()
-      this.autoReloadInterval = setInterval(this.updateActiveAgendaItems, 1000) // Alle 10 sec aktualisieren
+      this.autoReloadInterval = setInterval(this.updateActiveAgendaItems, 5000) // Alle 5 sec aktualisieren
     },
     loadItems(): void {
       const loadingStore = useLoadingStore()
