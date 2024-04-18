@@ -2,7 +2,7 @@
   <div>
     <a v-if="agenda.isActive" name="active-agenda" ref="active-agenda" />
     <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
-      <Card class="agenda-item m-1" :class="statusClass" :style="`height: ${agenda.duration/15}px;max-height:33vh;`">
+      <Card class="agenda-item m-1" :class="statusClass" :style="`height: ${agenda.duration/15}px;`">
         <template #title>
           <div class="flex flex-col">
             <TalkItem :talkId="agenda.talk[0]" class="flex-1"></TalkItem>
@@ -70,7 +70,8 @@ export default defineComponent({
 
 <style lang="scss">
 .agenda-item {
-  max-height: 66vh;
+  min-height: 4rem;
+  max-height: 33vh;
   text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
   background-color: rgba($color: #27272c, $alpha: 0.8);
 }
