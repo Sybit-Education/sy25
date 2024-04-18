@@ -11,7 +11,7 @@
       </template>
     </Card>
     <div class="room__map" >
-      <vue-image-zoomer v-if="room.image" :regular="room.image" alt="Raum" :zoom-amount="1.25" close-pos="top-right" img-class="room__map"/>
+      <vue-image-zoomer v-if="room.image" :regular="room.image" alt="Raum" :zoom-amount="1.25" close-pos="top-right" :touch-zoom-pos="[0.5,0]" img-class="room__map"/>
     </div>
 
     <img src="/img/stadthalle-header.png" alt="Raum" class="room__image" />  
