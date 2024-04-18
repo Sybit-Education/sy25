@@ -14,7 +14,7 @@
           </div>
         </template>
         <template #subtitle>
-          <SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem>
+          <SpeakerItem :talkId="agenda.talk[0]" class="speaker-list"></SpeakerItem>
         </template>
         <template #content>
           <div class="flex flex-col">
@@ -79,7 +79,10 @@ export default defineComponent({
 a {
   text-decoration: none;
 }
-
+.speaker-list {
+  max-height: 2rem;
+  text-overflow: clip;
+}
 .live-bolt {
   color: rgb(255, 204, 0);
   font-size: 1.5rem;
