@@ -13,7 +13,9 @@
             />
           </div>
         </template>
-        <template #subtitle><SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem></template>
+        <template #subtitle>
+          <SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem>
+        </template>
         <template #content>
           <div class="flex flex-col">
             <div class="flex-1 flex flex-col xl:flex-row xl:items-start gap-4">
