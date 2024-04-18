@@ -2,7 +2,7 @@
   <div>
     <a v-if="agenda.isActive" name="active-agenda" ref="active-agenda" />
     <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
-      <Card class="agenda-item m-1" :class="statusClass" :style="`height: ${agenda.duration/16}px;`">
+      <Card class="agenda-item m-1" :class="statusClass" :style="`height: ${agenda.duration/15}px;`">
         <template #title>
           <div class="flex flex-col">
             <TalkItem :talkId="agenda.talk[0]" class="flex-1"></TalkItem>
