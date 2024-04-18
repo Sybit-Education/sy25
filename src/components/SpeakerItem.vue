@@ -1,6 +1,6 @@
 <template>
-  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="mr-5 speaker">
-    <span><font-awesome-icon :icon="['far', 'user']" /> {{ speaker?.name }}</span>
+  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="mr-5">
+    <span class="speaker"><font-awesome-icon :icon="['far', 'user']" /> {{ speaker?.name }}</span>
     <span v-if="showTitle && speaker?.title">, {{ speaker.title }}</span>
   </span>
 </template>
