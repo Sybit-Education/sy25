@@ -1,16 +1,21 @@
 <template>
-  <Card v-if="room">
-    <template #title>
-      <font-awesome-icon :icon="['fas', 'map-location-dot']" />
-      {{ room.name }}
-    </template>
-    <template #subtitle></template>
-    <template #content>
-      <markdown-text class="room__notes" :text="room.notes" />
-    </template>
-  </Card>
-  <img v-if="room.image" :src="room.image" alt="Raum" class="room__map" />
-      <img src="/img/stadthalle-header.png" alt="Raum" class="room__image" />  
+  <div v-if="room">
+    <Card>
+      <template #title>
+        <font-awesome-icon :icon="['fas', 'map-location-dot']" class="p-text-secondary px-1"/>
+        {{ room.name }}
+      </template>
+      <template #subtitle></template>
+      <template #content>
+        <markdown-text class="room__notes" :text="room.notes" />
+      </template>
+    </Card>
+    <div class="room__map" >
+      <vue-image-zoomer v-if="room.image" :regular="room.image" alt="Raum" :zoom-amount="2" close-pos="top-right" img-class="room__map"/>
+    </div>
+
+    <img src="/img/stadthalle-header.png" alt="Raum" class="room__image" />  
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -19,7 +24,7 @@ import { useRoomStore } from '../stores/room.store'
 import type { Room } from '@/interfaces/room'
 
 export default defineComponent({
-  name: 'RoomItem',
+  name: 'RoomItem', 
   props: {
     roomId: {
       type: String,
