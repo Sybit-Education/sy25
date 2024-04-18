@@ -72,6 +72,7 @@ export default defineComponent({
 .agenda-item {
   min-height: 9rem;
   max-height: 33vh;
+  max-width: 98vw;
   text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
   background-color: rgba($color: #27272c, $alpha: 0.8);
 }
