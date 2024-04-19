@@ -99,7 +99,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .talk {
-  min-height: 50vh
+  min-height: 40vh
 }
 .talk--talk {
   background-image: url('/img/microphone.png');
