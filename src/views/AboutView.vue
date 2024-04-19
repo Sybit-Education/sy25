@@ -20,6 +20,12 @@
         </a>
       </li>
     </ul>
+    <hr />
+    <h3>Hinweis</h3>
+    <p>
+      Die Vorträge die du likest, werden nur lokal in deinem Browser gespeichert und 
+      nicht übertragen!
+    </p>
   </div>
 </template>
 <script lang="ts">

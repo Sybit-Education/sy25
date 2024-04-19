@@ -14,6 +14,7 @@ declare module 'vue' {
     Card: typeof import('primevue/card')['default']
     Chip: typeof import('primevue/chip')['default']
     HeaderBar: typeof import('./src/components/HeaderBar.vue')['default']
+    LikeTalk: typeof import('./src/components/LikeTalk.vue')['default']
     MarkdownText: typeof import('./src/components/MarkdownText.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     ProgressOverlay: typeof import('./src/components/ProgressOverlay.vue')['default']

@@ -11,6 +11,7 @@
               :icon="['fas', 'bolt']"
               class="live-bolt flex-0"
             />
+            <LikeTalk :talkId="agenda.talk[0]" class="like flex-0"/>
           </div>
         </template>
         <template #subtitle>
@@ -100,7 +101,10 @@ a {
   font-size: 1.5rem;
   margin-left: 0.5rem;
 }
-
+.like {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
 .agenda-item {
   transition: background-color 0.3s;
 }

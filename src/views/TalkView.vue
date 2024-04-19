@@ -7,31 +7,36 @@
           <TalkItem :talkId="talkId" class="talk__title my-2"></TalkItem>
         </template>
         <template #subtitle>
-          <div class="my-3">
-            <span>
-              {{
-                new Intl.DateTimeFormat('de-DE', {
-                  timeStyle: 'short'
-                }).format(agenda.date)
-              }}
-              <span v-if="agenda.endTime"
-                >-
+          <div class="my-3 flex flex-cols">
+            <span class="flex-1">
+              <span>
                 {{
                   new Intl.DateTimeFormat('de-DE', {
                     timeStyle: 'short'
-                  }).format(agenda.endTime)
-                }}</span
-              >
-              Uhr
+                  }).format(agenda.date)
+                }}
+                <span v-if="agenda.endTime"
+                  >-
+                  {{
+                    new Intl.DateTimeFormat('de-DE', {
+                      timeStyle: 'short'
+                    }).format(agenda.endTime)
+                  }}</span
+                >
+                Uhr
+              </span>
             </span>
             <span v-if="agenda.duration" class="p-text-secondary flex-0 mx-3">
               Dauer: <font-awesome-icon :icon="['fas', 'clock']" /> {{ agenda.duration / 60 }} min.
             </span>
+            <LikeTalk :talkId="agenda.talk[0]" class="flex-0"/>
           </div>
+
           <Badge v-if="talk.tag" :value="talk.tag" class="talk__tag" />
           <span v-if="agenda.room" class="my-3">
             Raum: <RoomChip :roomId="agenda.room[0]"></RoomChip>
           </span>
+
 
           <div class="talk__speaker my-3">
             <SpeakerItem :talkId="talkId" :show-avatar="false"></SpeakerItem>

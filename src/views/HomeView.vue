@@ -94,7 +94,6 @@ export default defineComponent({
     },    
     
     scrollToActiveEvent() {
-      this.refreshData()
       const eventElementList: HTMLElement[] = Array.from(
         document.getElementsByName('active-agenda')
       )
@@ -105,7 +104,7 @@ export default defineComponent({
           block: 'start',
           inline: 'nearest'
         })
-        const navbarHeight = 90 /* Höhe deiner Navigationsleiste */
+        const navbarHeight = 110 /* Höhe deiner Navigationsleiste */
         window.scrollTo({ top: window.scrollY - navbarHeight, behavior: 'smooth' })
       }
     }
