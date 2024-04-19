@@ -1,7 +1,7 @@
 <template>
-  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="text-sm mr-5">
-    <span class="speaker"><font-awesome-icon :icon="['far', 'user']" class="mr-1" /> {{ speaker?.name }}</span>
-    <span v-if="showTitle && speaker?.title">, {{ speaker.title }}</span>
+  <span v-for="speaker in speakers" v-bind:key="speaker.id" class="text-sm mr-5 speaker">
+    <Avatar v-if="showAvatar" :image="avatarSpeaker(speaker)" class="mr-2 speaker__avatar" shape="circle" size="xlarge"/>
+    <span class="speaker__name"><font-awesome-icon v-if="!showAvatar" :icon="['far', 'user']" class="mr-1" /> {{ speaker?.name }}</span>
   </span>
 </template>
 <script lang="ts">
@@ -20,7 +20,7 @@ export default defineComponent({
       required: false,
       default: undefined
     },
-    showTitle: {
+    showAvatar: {
       type: Boolean,
       default: false
     }
@@ -52,12 +52,37 @@ export default defineComponent({
         return undefined
       }
     }
+  },
+  methods: {
+    avatarSpeaker(speaker: Speaker): string | undefined {
+      if (speaker.image && this.showAvatar) {
+        const url = speaker.image[0].thumbnails.large.url
+        console.log(url)
+        return url
+      } else {
+        return undefined
+      }
+      
+    }
   }
 })
 </script>
 <style lang="scss">
 .speaker {
-  white-space: nowrap;
-  line-height: 1.75rem;
+
+  &__avatar {
+    flex-direction: row;
+    align-self: center;
+    display: block;
+
+    animation: neonAnim 1s alternate-reverse infinite;
+  }
+
+  &__name {
+    flex-direction: row;
+    align-self: center;
+    white-space: nowrap;
+    line-height: 1.75rem;
+  }
 }
 </style>

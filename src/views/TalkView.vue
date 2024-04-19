@@ -34,7 +34,7 @@
           </span>
 
           <div class="talk__speaker my-3">
-            <SpeakerItem :talkId="talkId" :show-title="true"></SpeakerItem>
+            <SpeakerItem :talkId="talkId" :show-avatar="false"></SpeakerItem>
           </div>
         </template>
         <template #content>
