@@ -58,7 +58,7 @@ export default defineComponent({
   border-bottom: #909090 1px solid;
 
   .logo {
-    height: 2rem;
+    height: 2.5rem;
     width: auto;
   }
 
