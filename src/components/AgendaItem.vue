@@ -2,7 +2,7 @@
   <div>
     <a v-if="agenda.isActive" name="active-agenda" ref="active-agenda" />
     <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
-      <Card class="agenda-item m-1" :class="statusClass" :style="`height: ${agenda.duration/15}px;`">
+      <Card class="agenda-item m-1" :class="statusClass" :style="itemHeightStyle">
         <template #title>
           <div class="flex flex-col">
             <TalkItem :talkId="agenda.talk[0]" class="flex-1"></TalkItem>
@@ -14,7 +14,9 @@
           </div>
         </template>
         <template #subtitle>
-          <SpeakerItem :talkId="agenda.talk[0]" class="speaker-list"></SpeakerItem>
+          <div class="speaker-list">
+            <SpeakerItem :talkId="agenda.talk[0]"></SpeakerItem>
+          </div>
         </template>
         <template #content>
           <div class="flex flex-col">
@@ -63,6 +65,15 @@ export default defineComponent({
       } else {
         return ''
       }
+    },
+    itemHeightStyle() {
+      let height;
+      if (this.agenda.duration < 3000) {
+        height = this.agenda.duration / 15 > 120 ? this.agenda.duration / 15 : 120
+      } else {
+        height = 3000 / 15
+      }
+      return `min-height: ${height}px;`
     }
   }
 })
@@ -70,7 +81,6 @@ export default defineComponent({
 
 <style lang="scss">
 .agenda-item {
-  min-height: 9rem;
   max-height: 33vh;
   max-width: 98vw;
   text-shadow: 0 0 15px var(--primary-color); /* Glow-Effekt mit text-shadow */
@@ -80,8 +90,10 @@ a {
   text-decoration: none;
 }
 .speaker-list {
-  max-height: 2rem;
-  text-overflow: clip;
+  --height: 1.5rem;
+  width: auto;
+  --white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .live-bolt {
   color: rgb(255, 204, 0);

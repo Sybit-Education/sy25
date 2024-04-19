@@ -105,13 +105,13 @@ export default defineComponent({
   background-image: url('/img/microphone.png');
   background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: 50%;
+  background-size: 240px;
 }
 .talk--pause {
   background-image: url('/img/coffee.png');
   background-repeat: no-repeat;
   background-position: right bottom;
-  background-size: 50%;
+  background-size: 240px;
 }
 .talk__description {
   line-height: 1.5rem;
