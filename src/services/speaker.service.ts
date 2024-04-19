@@ -16,7 +16,7 @@ const speakerService = {
                 id: partialRecords.id,
                 name: partialRecords.fields.Name as string,
                 title: partialRecords.fields.Titel as string,
-                image: partialRecords.fields.Photo as object
+                image: partialRecords.fields.Photo as Array<object>
               })
             })
             fetchNextPage()
