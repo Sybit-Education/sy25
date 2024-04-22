@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showPrompt && !installationDeclinedLocally" class="install-pwa">
+  <div v-if="showPrompt && !installationDeclined" class="install-pwa">
     <div class="install-pwa-content">
       <font-awesome-icon :icon="['fas', 'circle-info']" class="install-pwa-icon" />
       <span class="install-pwa-text"

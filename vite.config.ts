@@ -16,7 +16,7 @@ export default defineConfig({
     }),
     VitePWA({
       devOptions: {
-        enabled: false
+        enabled: true
       },
       registerType: 'autoUpdate',
       includeAssets: [
@@ -76,8 +76,8 @@ export default defineConfig({
                 statuses: [0, 200]
               }
             }
-          }
-        ]
+          },
+        ],
       }
     }),
     VueDevTools()
