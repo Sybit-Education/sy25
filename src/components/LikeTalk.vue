@@ -1,7 +1,7 @@
 <template>
   <span class="like-talk">      
-    <Button v-if="talkLiked" @click="likeTalk(false, $event)" rounded ><font-awesome-icon :icon="['fas', 'heart']" /></Button>
-    <Button v-else @click="likeTalk(true, $event)" rounded><font-awesome-icon :icon="['far', 'heart']" /></Button>
+    <Button v-if="talkLiked" @click="likeTalk(false, $event)" rounded text><font-awesome-icon :icon="['fas', 'heart']"/></Button>
+    <Button v-else @click="likeTalk(true, $event)" rounded text><font-awesome-icon :icon="['far', 'heart']" /></Button>
   </span>
 </template>
 <script lang="ts">
@@ -41,6 +41,9 @@ export default defineComponent({
   display: flex;
   align-items: center;
   z-index: 20;
+  .p-button {
+    font-size: 1.75rem;
+  }
 }
 
 </style>
