@@ -23,8 +23,8 @@ body {
   background-size: auto;
 }
 main {
-  margin-top: 4rem;
-  margin-bottom: 0.5rem;
+  margin-top: 5.5rem;
+  margin-bottom: 1.5rem;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);

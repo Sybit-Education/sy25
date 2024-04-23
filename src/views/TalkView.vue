@@ -77,7 +77,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    useNavigationStore().setBackButtonVisible(true, '/')
+    useNavigationStore().setBackButtonVisible(true, `/#${this.agendaId}`)
   },
   computed: {
     ...mapState(useTalkStore, {
@@ -124,6 +124,6 @@ export default defineComponent({
 .talk__tag {
   position: absolute;
   right: 18px;
-  top: 65px;
+  top: 5rem;
 }
 </style>
