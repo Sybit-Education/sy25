@@ -20,7 +20,7 @@ const router = createRouter({
     } else {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({ behavior: 'smooth',top: 0 })
+          resolve({ behavior: 'smooth', top: 0 })
         }, 50)
       })
     }
