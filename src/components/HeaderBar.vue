@@ -1,7 +1,7 @@
 <template>
   <nav class="header-bar px-2 flex flex-cols">
     <div class="text-left flex-1">
-      <RouterLink v-if="showBackButton" to="/" class="flex-1 text-center">
+      <RouterLink v-if="showBackButton" :to="backUrl" class="flex-1 text-center">
         <Button  class="m-1" rounded style="padding-left:14px"><font-awesome-icon :icon="['fas', 'chevron-left']" /></Button>
       </RouterLink>
       <div v-else class="m-1">&nbsp;</div>
