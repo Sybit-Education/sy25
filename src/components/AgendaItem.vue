@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a :id="agenda.id" :name="agenda.id">
     <a v-if="agenda.isActive" name="active-agenda" ref="active-agenda" />
     <router-link :to="`/talk/${agenda.talk}/${agenda.id}`">
       <Card class="agenda-item m-1" :class="statusClass" :style="itemHeightStyle">
@@ -38,6 +39,7 @@
         </template>
       </Card>
     </router-link>
+    </a>
   </div>
 </template>
 

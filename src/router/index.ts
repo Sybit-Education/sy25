@@ -10,14 +10,19 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
-      return {
-        selector: to.hash,
-        behavior: 'smooth'
-      }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ el: to.hash, behavior: 'smooth',  top: 65  })
+        }, 100)
+      })
     } else if (savedPosition) {
       return savedPosition
     } else {
-      return { x: 0, y: 0 }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ behavior: 'smooth',top: 0 })
+        }, 50)
+      })
     }
   },
   routes: [
