@@ -1,4 +1,5 @@
 import { Api } from 'nocodb-sdk';
+// Ensure compatibility with latest NocoDB REST API
 
 class NocoDBService {
   private client: Api;
@@ -15,33 +16,33 @@ class NocoDBService {
   }
 
   async list(params?: {
-    fields?: string;
+    fields?: string[];
     sort?: string;
     where?: string;
     offset?: number;
     limit?: number;
   }) {
-    return await this.client.dbTableRow.list('v2', this.tableId, params);
+    return await this.client.dbTableRow.list('noco', this.tableId, params);
   }
 
   async create(data: Record<string, any>[]) {
-    return await this.client.dbTableRow.create('v2', this.tableId, data);
+    return await this.client.dbTableRow.create('noco', this.tableId, data);
   }
 
   async update(data: Array<{ Id: number } & Record<string, any>>) {
-    return await this.client.dbTableRow.update('v2', this.tableId, data);
+    return await this.client.dbTableRow.update('noco', this.tableId, data);
   }
 
   async delete(ids: Array<{ Id: number }>) {
-    return await this.client.dbTableRow.delete('v2', this.tableId, ids);
+    return await this.client.dbTableRow.delete('noco', this.tableId, ids);
   }
 
-  async read(recordId: number, params?: { fields?: string }) {
-    return await this.client.dbTableRow.read('v2', this.tableId, recordId, params);
+  async read(recordId: number, params?: { fields?: string[] }) {
+    return await this.client.dbTableRow.read('noco', this.tableId, recordId, params);
   }
 
   async count(params?: { where?: string }) {
-    return await this.client.dbTableRow.count('v2', this.tableId, params);
+    return await this.client.dbTableRow.count('noco', this.tableId, params);
   }
 }
 
