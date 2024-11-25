@@ -5,10 +5,10 @@ class NocoDBService {
   private token: string;
   private tableId: string;
 
-  constructor() {
+  constructor(tableId: string) {
     this.baseURL = import.meta.env.VITE_APP_NOCODB_URL;
     this.token = import.meta.env.VITE_APP_NOCODB_TOKEN;
-    this.tableId = import.meta.env.VITE_APP_NOCODB_TABLE_ID;
+    this.tableId = tableId;
   }
 
   private getHeaders() {
@@ -79,6 +79,6 @@ class NocoDBService {
   }
 }
 
-export const base = new NocoDBService();
+export const base = new NocoDBService(import.meta.env.VITE_APP_NOCODB_TABLE_ID);
 
 export default base;
