@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class NocoDBService {
+export class NocoDBService {
   private baseURL: string;
   private token: string;
   private tableId: string;
@@ -78,7 +78,3 @@ class NocoDBService {
     return response.data;
   }
 }
-
-export const base = new NocoDBService(import.meta.env.VITE_APP_NOCODB_TABLE_ID);
-
-export default base;

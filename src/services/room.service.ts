@@ -1,10 +1,11 @@
 import type { Room } from '@/interfaces/room'
-import base from './airtable.service'
+import { NocoDBService } from './nocodb.service'
 
 const roomService = {
   async getAll() {
+    const service = new NocoDBService('rooms');
     try {
-      const response = await base.list();
+      const response = await service.list();
       const items: Array<Room> = response.list.map((record: any) => ({
         id: record.Id,
         name: record.Name,

@@ -1,5 +1,5 @@
 import type { Agenda } from '@/interfaces/agenda'
-import base from './airtable.service'
+import base from './nocodb.service'
 
 const BASE_NAME = 'Agenda'
 

@@ -1,5 +1,5 @@
 import type { Talk } from '@/interfaces/talk'
-import base from './airtable.service'
+import base from './nocodb.service'
 
 const BASE_NAME = 'Vortrag'
 

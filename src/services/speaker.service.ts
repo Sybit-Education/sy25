@@ -1,5 +1,5 @@
 import type { Speaker } from '@/interfaces/speaker'
-import base from './airtable.service'
+import base from './nocodb.service'
 
 const BASE_NAME = 'Referent'
 
