@@ -1,4 +1,4 @@
-import { Api } from '@nocodb/nocodb-sdk';
+import { Api } from 'nocodb-sdk';
 
 class NocoDBService {
   private client: Api;
@@ -8,7 +8,7 @@ class NocoDBService {
     this.client = new Api({
       baseURL,
       headers: {
-        'X-Xc-Token': token
+        'xc-token': token
       }
     });
     this.tableId = tableId;
