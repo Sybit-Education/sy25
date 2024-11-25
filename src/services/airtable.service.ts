@@ -1,4 +1,4 @@
-import { Api } from 'nocodb-sdk';
+import { Api } from '@nocodb/nocodb-sdk';
 // Ensure compatibility with latest NocoDB REST API
 
 class NocoDBService {

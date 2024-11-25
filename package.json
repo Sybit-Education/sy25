@@ -21,7 +21,6 @@
     "@fortawesome/vue-fontawesome": "^3.0.6",
     "axios": "^1.7.7",
     "nocodb": "^0.258.2",
-    "@nocodb/nocodb-sdk": "^0.24.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "primeflex": "^3.3.1",
