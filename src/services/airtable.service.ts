@@ -1,18 +1,21 @@
-import { Api } from '@nocodb/nocodb-sdk';
-// Ensure compatibility with latest NocoDB REST API
+import axios from 'axios';
 
 class NocoDBService {
-  private client: Api;
+  private baseURL: string;
+  private token: string;
   private tableId: string;
 
   constructor(baseURL: string, token: string, tableId: string) {
-    this.client = new Api({
-      baseURL,
-      headers: {
-        'xc-token': token
-      }
-    });
+    this.baseURL = baseURL;
+    this.token = token;
     this.tableId = tableId;
+  }
+
+  private getHeaders() {
+    return {
+      'xc-token': this.token,
+      'Content-Type': 'application/json'
+    };
   }
 
   async list(params?: {
@@ -22,27 +25,57 @@ class NocoDBService {
     offset?: number;
     limit?: number;
   }) {
-    return await this.client.dbTableRow.list('noco', this.tableId, params);
+    const response = await axios.get(`${this.baseURL}/api/v2/tables/${this.tableId}/rows`, {
+      headers: this.getHeaders(),
+      params: {
+        ...params,
+        fields: params?.fields?.join(',')
+      }
+    });
+    return response.data;
   }
 
   async create(data: Record<string, any>[]) {
-    return await this.client.dbTableRow.create('noco', this.tableId, data);
+    const response = await axios.post(`${this.baseURL}/api/v2/tables/${this.tableId}/rows`, data, {
+      headers: this.getHeaders()
+    });
+    return response.data;
   }
 
   async update(data: Array<{ Id: number } & Record<string, any>>) {
-    return await this.client.dbTableRow.update('noco', this.tableId, data);
+    const updatePromises = data.map(item => 
+      axios.patch(`${this.baseURL}/api/v2/tables/${this.tableId}/rows/${item.Id}`, item, {
+        headers: this.getHeaders()
+      })
+    );
+    return Promise.all(updatePromises);
   }
 
   async delete(ids: Array<{ Id: number }>) {
-    return await this.client.dbTableRow.delete('noco', this.tableId, ids);
+    const deletePromises = ids.map(item => 
+      axios.delete(`${this.baseURL}/api/v2/tables/${this.tableId}/rows/${item.Id}`, {
+        headers: this.getHeaders()
+      })
+    );
+    return Promise.all(deletePromises);
   }
 
   async read(recordId: number, params?: { fields?: string[] }) {
-    return await this.client.dbTableRow.read('noco', this.tableId, recordId, params);
+    const response = await axios.get(`${this.baseURL}/api/v2/tables/${this.tableId}/rows/${recordId}`, {
+      headers: this.getHeaders(),
+      params: {
+        fields: params?.fields?.join(',')
+      }
+    });
+    return response.data;
   }
 
   async count(params?: { where?: string }) {
-    return await this.client.dbTableRow.count('noco', this.tableId, params);
+    const response = await axios.get(`${this.baseURL}/api/v2/tables/${this.tableId}/rows/count`, {
+      headers: this.getHeaders(),
+      params
+    });
+    return response.data;
   }
 }
 
