@@ -19,7 +19,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/vue-fontawesome": "^3.0.6",
-    "airtable": "^0.12.2",
+    "nocodb": "^0.x.x",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "primeflex": "^3.3.1",
